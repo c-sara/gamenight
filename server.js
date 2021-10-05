@@ -12,15 +12,17 @@ const db = new Pool({
 })
 
 app.use(express.static('client'))
+app.set('view engine', 'ejs')
 
 // assign it in req.body
 app.use(express.json())
 
+app.get('/', (req, res) => {
+  res.render('index')
+})
 
-app.get('/test', (req, res) => {
-
-  res.send('testing')
-
+app.get('/marking-page', (req, res) => {
+  res.render('marking-page', { answers: req.query })
 })
 
 app.listen(port, () => {
