@@ -7,16 +7,25 @@
   <title>Document</title>
 </head>
 <body>
+
   <h1>gamenight</h1>
-  <p>player 1</p>
-  <button><%= answers.animalAns %></button>
-  <button><%= answers.animalAns %></button>
-  <button><%= answers.animalAns %></button>
-  <button><%= answers.animalAns %></button>
-  <p>total: 500</p>
+
+  <!-- this will generate from the array in server.js
+  div will have unique class -->
+
+  <div class="player-answer-div">
+    <p>player 1</p>
+    <button class="point-btn"><%= answers.animalAns %></button>
+    <button class="point-btn"><%= answers.countryAns %></button>
+    <button class="point-btn"><%= answers.movieAns %></button>
+    <button class="point-btn"><%= answers.dogAns %></button>
+    <button class="point-btn"><%= answers.foodAns %></button>
+    <p class="total-score"></p>
+  </div>
+
+  <!-- make an if statement that handles what to do if the round is 0 -->
+
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <!-- <script src="marking-page.js"></script> -->
-  <script>
-  </script>
+  <script src="js/marking-page.js"></script>
 </body>
 </html>
