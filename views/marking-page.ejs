@@ -13,15 +13,19 @@
   <!-- this will generate from the array in server.js
   div will have unique class -->
 
-  <div class="player-answer-div">
-    <p>player 1</p>
-    <button class="point-btn"><%= answers.animalAns %></button>
-    <button class="point-btn"><%= answers.countryAns %></button>
-    <button class="point-btn"><%= answers.movieAns %></button>
-    <button class="point-btn"><%= answers.dogAns %></button>
-    <button class="point-btn"><%= answers.foodAns %></button>
-    <p class="total-score"></p>
-  </div>
+  <% answers.forEach(answer => { %>
+    <div class="player-answer-div">
+      <p>player 1</p>
+      <button class="point-btn"><%= answer.animalAns %></button>
+      <button class="point-btn"><%= answer.countryAns %></button>
+      <button class="point-btn"><%= answer.movieAns %></button>
+      <button class="point-btn"><%= answer.dogAns %></button>
+      <button class="point-btn"><%= answer.foodAns %></button>
+      <p class="total-score">0</p>
+    </div>
+
+  <%}) %>
+
 
   <!-- make an if statement that handles what to do if the round is 0 -->
 
