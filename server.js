@@ -16,9 +16,6 @@ app.use(express.static('client'))
 // assign it in req.body
 app.use(express.json())
 
-app.get('/', (req, res) => {
-
-})
 
 app.get('/test', (req, res) => {
 
