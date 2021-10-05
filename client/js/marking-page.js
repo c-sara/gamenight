@@ -4,7 +4,11 @@ function handleAddPoint(e) {
 
     let clicked = e.target
     let parentDiv = clicked.closest('div')
-    let score = parentDiv.children[6]
+    
+    // this is the spread operator
+    // it makes this nodeList into an array
+    let score = [...parentDiv.children]
+        .filter(elem => elem.classList.contains('total-score'))[0]
 
     if (clicked.classList.contains('point-btn')) {
         clicked.classList.toggle('clicked')
