@@ -24,4 +24,12 @@ INSERT INTO categories (category) VALUES ('movie');
 INSERT INTO categories (category) VALUES ('types of dogs');
 INSERT INTO categories (category) VALUES ('food');
 
+
+CREATE TABLE results (
+  result_id SERIAL PRIMARY KEY,
+  player_id INT,
+  category_id INT,
+  result TEXT
+);
+
 -- Things outside of DBs - tracking answers (use name="" in input) and player scores
