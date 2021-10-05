@@ -6,6 +6,8 @@ const Category = require('./models/category.js')
 const Game = require('./models/game.js')
 const Player = require('./models/player.js')
 
+let answers = [] //temporary??
+
 const { Pool } = require('pg')
 const db = new Pool({
   database: 'gamenight'
@@ -34,7 +36,8 @@ app.get('/game', (req, res) => {
 })
 
 app.get('/marking-page', (req, res) => {
-  res.render('marking-page', { answers: req.query })
+  answers.push(req.query)
+  res.render('marking-page', { answers })
 })
 
 app.listen(port, () => {

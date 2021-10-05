@@ -1,18 +1,22 @@
-let answerDiv = document.querySelector('.player-answer-div')
+let answerDivs = document.querySelectorAll('.player-answer-div')
 
 function handleAddPoint(e) {
 
     let clicked = e.target
-    let score = document.querySelector('.total-score')
+    let parentDiv = clicked.closest('div')
+    let score = parentDiv.children[6]
 
     if (clicked.classList.contains('point-btn')) {
         clicked.classList.toggle('clicked')
     }
 
-    let clickedBtns = document.querySelectorAll('.clicked')
+    let clickedBtns = parentDiv.querySelectorAll('.clicked')
     
     score.textContent = clickedBtns.length
 
 }
 
-answerDiv.addEventListener('click', handleAddPoint)
+answerDivs.forEach(answerDiv => {
+    answerDiv.addEventListener('click', handleAddPoint)
+
+})
