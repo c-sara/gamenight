@@ -8,7 +8,7 @@ const Player = require('./models/player.js')
 
 const { Pool } = require('pg')
 const db = new Pool({
-    database: 'gamenight'
+  database: 'gamenight'
 })
 
 var session = require('express-session')
@@ -25,12 +25,16 @@ app.use(session({
 }))
 
 app.get('/', (req, res) => {
+  res.render('index')
+})
+
+app.get('/game', (req, res) => {
   req.session.user_id = 4
-  res.render('index', { user_id: req.session.user_id })
+  res.render('game', { user_id: req.session.user_id })
 })
 
 app.get('/marking-page', (req, res) => {
-  res.render('marking-page', { answers: req.query})
+  res.render('marking-page', { answers: req.query })
 })
 
 app.listen(port, () => {
