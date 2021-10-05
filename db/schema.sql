@@ -1,5 +1,5 @@
 CREATE DATABASE gamenight;
-
+\c gamenight
 CREATE TABLE categories (
   cat_id SERIAL PRIMARY KEY,
   category VARCHAR(50)

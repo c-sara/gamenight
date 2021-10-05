@@ -11,16 +11,26 @@ const db = new Pool({
     database: 'gamenight'
 })
 
+var session = require('express-session')
+
 app.use(express.static('client'))
+app.set('view engine', 'ejs')
 
 // assign it in req.body
 app.use(express.json())
+app.use(session({
+  secret: 'susan swan',
+  resave: true,
+  saveUninitialized: true
+}))
 
+app.get('/', (req, res) => {
+  req.session.user_id = 4
+  res.render('index', { user_id: req.session.user_id })
+})
 
-app.get('/test', (req, res) => {
-
-  res.send('testing')
-
+app.get('/marking-page', (req, res) => {
+  res.render('marking-page', { answers: req.query})
 })
 
 app.listen(port, () => {
