@@ -14,7 +14,6 @@ const db = new Pool({
 })
 
 let session = require('express-session')
-// const { LineController } = require('chart.js')
 
 app.use(express.static('client'))
 app.engine('ejs', engine)
@@ -33,13 +32,49 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
+/*
+TO DO
+-------
+In app.get('/host) (called from index.ejs HOSTSIDE)
+Using SQL we have inserted host values
+Now we need to insert a GAME 
+UPDATE the players to add game_id value (or alternatively make GAME first)
+
+.then Figure out
+How to parse into the right lobby
+eg. localhost:8080/lobby/7
+eg. localhost:8080/lobby/gameName
+*/
+
+app.get('/host', (req, res) => {
+    var gameName = req.query.gameName
+    var displayName = req.query.displayName
+    console.log(req.query)
+
+    db.query(`INSERT INTO players (display_name, host) VALUES ($1, $2) RETURNING *;`, [req.query.displayName, true], (err, dbRes) => {
+        console.log(dbRes.rows)
+        //generate session.user_id
+        req.session.user_id = dbRes.rows[0].player_id
+
+
+        //res.redirect('/lobby') REDIRECT TO LOBBY:ID 
+    })
+    // db.query(`INSERT INTO games (name, rounds) VALUES ($1, $2) RETURNING *;`, [req.query.gameName], (err, dbRes) => {
+    //     console.log(dbRes.rows)
+    // })
+    res.redirect(`/lobby/${gameName}`, {})
+})
+
+
+
+
 app.get('/join-game', (req, res) => {
     //insert into the players table the display name and generate a session.user id
 
     //not worrying about game id at this stage (one game mode)
 
     db.query(`INSERT INTO players (display_name) VALUES ($1) RETURNING *;`, [req.query.displayName], (err, dbRes) => {
-
+        console.log(dbRes.rows)
         //generate session.user_id
         req.session.user_id = dbRes.rows[0].player_id
 
@@ -48,8 +83,16 @@ app.get('/join-game', (req, res) => {
     })
 })
 
+// app.get('/lobby/:id') or
+app.get('/lobby/:id', (req, res) => {
+    gameName = req.params.id
+    req.session.user_id = 4 // Hard coded session user_id
 
-app.get('/lobby', (req, res) => {
+    db.query(`SELECT * FROM players WHERE game_id = ${gameName}`, (err, dbRes) => {
+        console.log(dbRes)
+        res.render('lobby', { players: dbRes.rows, user_id: req.session.user_id, gameName: gameName })
+
+    })
 
     db.query(`SELECT * FROM players;`, (err, dbRes) => {
 
@@ -57,9 +100,7 @@ app.get('/lobby', (req, res) => {
     })
 })
 
-
-
-
+//
 app.get('/api/lobby', (req, res) => {
 
     db.query(`UPDATE players SET last_request = NOW() WHERE player_id = $1 RETURNING *;`, [req.session.user_id], (err, dbRes) => {
@@ -70,18 +111,17 @@ app.get('/api/lobby', (req, res) => {
         })
     })
 
-
 })
 
 // app.get('/lobby/:id', (req, res) => {
-//   gameName = req.params.id
-//   req.session.user_id = 4 // Hard coded session user_id
+//     gameName = req.params.id
+//     req.session.user_id = 4 // Hard coded session user_id
 
-//   db.query(`SELECT * FROM players WHERE game_id = ${gameName}`, (err, dbRes) => {
-//     console.log(dbRes)
-//     res.render('lobby', { players: dbRes.rows, user_id: req.session.user_id, gameName: gameName })
+//     db.query(`SELECT * FROM players WHERE game_id = ${gameName}`, (err, dbRes) => {
+//         console.log(dbRes)
+//         res.render('lobby', { players: dbRes.rows, user_id: req.session.user_id, gameName: gameName })
 
-//   })
+//     })
 
 // })
 
