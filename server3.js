@@ -86,8 +86,17 @@ app.get('/api/lobby', (req, res) => {
 // })
 
 app.get('/game', (req, res) => {
-    req.session.user_id = 4
-    res.render('game', { user_id: req.session.user_id })
+    Game.categoriesByGame()
+    .then(dbRes => {
+        var gameCategories = dbRes.rows
+        
+        res.render('game', { user_id: req.session.user_id, gameCategories })
+    })
+    .catch(err => {
+            res.status(500)
+                .json({ itsNotYou: 'itsMe', message: err.message })
+    })
+
 })
 
 app.get('/marking-page', (req, res) => {
@@ -99,7 +108,30 @@ app.get('/marking-page', (req, res) => {
         req.session.answers = []
         req.session.answers.push(req.query)
     }
-    res.render('marking-page', { answers: req.session.answers })
+
+    // console.log(req.session.answers);
+
+    Game.categoriesByGame()
+        .then(dbRes => {
+            var gameCategories = dbRes.rows
+            
+            res.render('marking-page', { answers: req.session.answers, gameCategories })
+        })
+        .catch(err => {
+                res.status(500)
+                    .json({ itsNotYou: 'itsMe', message: err.message })
+        })
+})
+
+app.get('/api/games', (req, res) => {
+    Game.all()
+        .then(dbRes => {
+            res.json(dbRes.rows)
+        })
+        .catch(err => {
+            res.status(500)
+                .json({ itsNotYou: 'itsMe', message: err.message })
+        })
 })
 
 app.get('/api/categories', (req, res) => {

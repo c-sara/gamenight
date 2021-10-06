@@ -4,20 +4,23 @@
   <!-- this will generate from the array in server.js
   div will have unique class -->
   <div class="categories player-answer-div">
-    <h4 class="category-h4">animal</h4>
-    <h4 class="category-h4">country</h4>
-    <h4 class="category-h4">movie</h4>
-    <h4 class="category-h4">types of dog</h4>
-    <h4 class="category-h4">food</h4>
+    <% gameCategories.forEach(category => { %>
+      <h4 class="category-h4"><%= category.category %></h4>
+    
+    <% }) %>
+
   </div>
-  
   <% answers.forEach(answer => { %>
     <div class="player-answer-div">
       <p>player 1</p>
-      <button class="point-btn"><%= answer.animalAns %></button>
+      <!-- UP TO HERE -->
+      <% gameCategories.forEach(category => { %>
+        <button class="point-btn"><%= answer.animalAns %></button>
+      
+      <% }) %>
       <button class="point-btn"><%= answer.countryAns %></button>
       <button class="point-btn"><%= answer.movieAns %></button>
-      <button class="point-btn"><%= answer.dogAns %></button>
+      <button class="point-btn"><%= answer.typesofdogsAns %></button>
       <button class="point-btn"><%= answer.foodAns %></button>
       <p class="total-score">0</p>
     </div>
