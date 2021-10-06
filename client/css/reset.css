@@ -12,7 +12,8 @@ img {
     height: auto;
 }
 
-button {
+a, button {
     font-style: inherit;
     font-family: inherit;
+    text-transform: inherit;
 }
