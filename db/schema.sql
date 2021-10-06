@@ -15,9 +15,14 @@ CREATE TABLE games (
 CREATE TABLE players (
   player_id SERIAL PRIMARY KEY,
   display_name VARCHAR(20),
-  game_id INT
+  game_id INT,
+  last_request TIMESTAMP,
+  -- active BOOLEAN, probably won't need (cache polution)
+  host BOOLEAN
 );
-
+ -- Every time a user makes a request, check their ID, if they haven't responded within X amount
+ -- If their previous timestamp minus their current timestamp 
+ -- But if their last timestamp is > 5 seconds they are considered disconnected
 INSERT INTO categories (category) VALUES ('animal');
 INSERT INTO categories (category) VALUES ('country');
 INSERT INTO categories (category) VALUES ('movie');
@@ -33,3 +38,17 @@ CREATE TABLE results (
 );
 
 -- Things outside of DBs - tracking answers (use name="" in input) and player scores
+
+
+
+
+
+
+
+
+
+-- IGNORE THIS SHIT
+INSERT INTO players (display_name, game_id) VALUES ('Ben', 7);
+INSERT INTO players (display_name, game_id) VALUES ('Susan Swan', 4);
+INSERT INTO players (display_name, game_id) VALUES ('Player 3', 7);
+INSERT INTO players (display_name, game_id) VALUES ('Player 4', 7);

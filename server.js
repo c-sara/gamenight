@@ -28,8 +28,37 @@ app.use(session({
 }))
 
 app.get('/', (req, res) => {
+  console.log(req)
   res.render('index')
 })
+
+app.get('/lobby', (req, res) => {
+
+  db.query(`SELECT * FROM players;`, (err, dbRes) => {
+
+    res.render('lobby')
+  })
+})
+
+app.get('/api/lobby', (req, res) => {
+
+  db.query(`SELECT * FROM players;`, (err, dbRes) => {
+
+    res.json({ players: dbRes.rows })
+  })
+})
+
+// app.get('/lobby/:id', (req, res) => {
+//   gameName = req.params.id
+//   req.session.user_id = 4 // Hard coded session user_id
+
+//   db.query(`SELECT * FROM players WHERE game_id = ${gameName}`, (err, dbRes) => {
+//     console.log(dbRes)
+//     res.render('lobby', { players: dbRes.rows, user_id: req.session.user_id, gameName: gameName })
+
+//   })
+
+// })
 
 app.get('/game', (req, res) => {
   req.session.user_id = 4
@@ -66,17 +95,14 @@ app.post('/api/categories', (req, res) => {
   Category.create(category)
     .then(dbRes => {
       res.status(200)
-        .json({message: 'success!', category: dbRes.rows[0]})
+        .json({ message: 'success!', category: dbRes.rows[0] })
     })
     .catch(err => {
       res.status(500)
-        .json({ thatsOn: 'us', message: err.message})
+        .json({ thatsOn: 'us', message: err.message })
     })
 })
 
 app.listen(port, () => {
   console.log('listening on port ' + port)
 })
-
-//Potato
-//Extra potato
