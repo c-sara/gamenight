@@ -17,3 +17,13 @@ function handleAddGame(event) {
             itemsList.appendChild(createItem(res.data.item.id, gameName, 'supermarket'))
         })
 }
+
+
+
+
+
+//in the join game section (when the user inputs a display name) assign session.user_id
+
+//OR
+
+//as soon as client loads index assign session.user_id
