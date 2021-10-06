@@ -41,7 +41,7 @@ app.get('/join-game', (req, res) => {
   db.query(`INSERT INTO players (display_name) VALUES ($1) RETURNING *;`, [req.query.displayName], (err, dbRes) => {
 
     //generate session.user_id
-    req.session.user_id = dbRes.rows[0].player_id 
+    req.session.user_id = dbRes.rows[0].player_id
 
 
     res.redirect('/lobby')
@@ -61,16 +61,16 @@ app.get('/lobby', (req, res) => {
 
 
 app.get('/api/lobby', (req, res) => {
-  
+
   db.query(`UPDATE players SET last_request = NOW() WHERE player_id = $1 RETURNING *;`, [req.session.user_id], (err, dbRes) => {
 
     db.query(`SELECT * FROM players WHERE last_request > NOW() - interval '4 seconds' ORDER BY player_id;`, (err, dbRes) => {
-      
+
       res.json({ players: dbRes.rows })
     })
   })
 
-  
+
 })
 
 // app.get('/lobby/:id', (req, res) => {
