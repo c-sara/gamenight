@@ -22,5 +22,15 @@ function handleAddPoint(e) {
 
 answerDivs.forEach(answerDiv => {
     answerDiv.addEventListener('click', handleAddPoint)
-
+    answerDiv.style.display = 'flex'
+    answerDiv.style.flexDirection = 'column'
+    answerDiv.style.textAlign = 'center'
 })
+
+let wrapper = document.querySelector('.wrapper')
+
+wrapper.style.display = 'grid'
+wrapper.style.gridTemplateColumns = `repeat(${answerDivs.length}, 1fr)`
+
+
+

@@ -1,3 +1,65 @@
 .clicked {
     background-color: lightgreen;
 }
+
+body {
+    background-color: #FCAF58;
+    text-transform: lowercase;
+}
+
+/* layout center header */
+
+.game {
+    text-align: center;
+}
+
+.game-stats-nav {
+    background-color: #320E3B;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem 0; 
+    margin: 0.5rem 0;
+}
+
+.input-label-group {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.5rem auto;
+    width: 70%;
+    text-align: right;
+}
+
+.label {
+    display: block;
+}
+
+.input {
+    width: 75%;
+    height: 1.5rem;
+    border: 1px solid #087E8B;
+    border-radius: 2px;
+    background-color: white;
+}
+
+.dark-btn {
+    background-color: #087E8B;
+    color: white;
+    font-weight: 600;
+    letter-spacing: .5px;
+    padding: 0.5rem;
+    border: 1px solid #320E3B;
+    border-radius: 2px;
+}
+
+.light-btn {
+    background-color: #320E3B;
+    color: white;
+    font-weight: 600;
+    letter-spacing: .5px;
+    padding: 0.5rem;
+    border: 1px solid #087E8B;
+    border-radius: 2px;
+}
