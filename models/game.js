@@ -1,6 +1,7 @@
 const { Pool } = require('pg')
 const db = new Pool({
-    database: 'gamenight'
+    database: 'gamenight',
+    password: 'test'
 })
 
 function all() {
