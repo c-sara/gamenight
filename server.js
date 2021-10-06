@@ -1,4 +1,5 @@
 const express = require('express')
+const engine = require('ejs-mate')
 const app = express()
 const port = 8080
 
@@ -12,9 +13,10 @@ const db = new Pool({
 })
 
 let session = require('express-session')
-const { LineController } = require('chart.js')
+// const { LineController } = require('chart.js')
 
 app.use(express.static('client'))
+app.engine('ejs', engine)
 app.set('view engine', 'ejs')
 
 // assign it in req.body
