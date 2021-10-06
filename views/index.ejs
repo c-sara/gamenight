@@ -33,10 +33,16 @@ body {
         <div class="gridwrap">
             <div class="create">
                 <h2>Create Game</h2>
-                <form action="lobby">
-                <label for="">Game Name:</label>
-                <input type="text">
-                <button>Create Game</button>
+                <form method="get" action="/host">
+                    <div class="input-label-group">
+                        <label for="">Game Name:</label>
+                        <input name="gameName" type="text"> 
+                    </div>
+                    <div class="input-label-group">
+                        <label for="">Host name:</label>
+                        <input name="displayName" type="text"> 
+                    </div>
+                    <button>Create Game</button>
                 </form>
             </div>
 

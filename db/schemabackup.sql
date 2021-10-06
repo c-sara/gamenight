@@ -7,6 +7,7 @@ CREATE TABLE categories (
 
 CREATE TABLE games (
   game_id SERIAL PRIMARY KEY,
+  game_name TEXT, --ADDED THIS
   rounds INT,
   players INT ARRAY,
   categories INT ARRAY
