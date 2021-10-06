@@ -1,5 +1,8 @@
 // Do set interval
 
+//make it so the players table is tracking timestmps each time a response is made. 
+
+//then do the comparioson
 
 
 function renderPlayerList() {
@@ -8,6 +11,8 @@ function renderPlayerList() {
         .then(res => {
             var lobbyPlayerList = document.querySelector(".lobby-players-list")
             var players = res.data.players
+
+            
             lobbyPlayerList.innerHTML = ""
 
             players.forEach(player => {

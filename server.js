@@ -9,7 +9,8 @@ const Player = require('./models/player.js')
 
 const { Pool } = require('pg')
 const db = new Pool({
-  database: 'gamenight'
+  database: 'gamenight',
+  password: 'test'
 })
 
 let session = require('express-session')
@@ -28,9 +29,25 @@ app.use(session({
 }))
 
 app.get('/', (req, res) => {
-  console.log(req)
+  // console.log(req)
   res.render('index')
 })
+
+app.get('/join-game', (req, res) => {
+  //insert into the players table the display name and generate a session.user id
+
+  //not worrying about game id at this stage (one game mode)
+
+  db.query(`INSERT INTO players (display_name) VALUES ($1) RETURNING *;`, [req.query.displayName], (err, dbRes) => {
+
+    //generate session.user_id
+    req.session.user_id = dbRes.rows[0].player_id 
+
+
+    res.redirect('/lobby')
+  })
+})
+
 
 app.get('/lobby', (req, res) => {
 
@@ -40,12 +57,20 @@ app.get('/lobby', (req, res) => {
   })
 })
 
+
+
+
 app.get('/api/lobby', (req, res) => {
+  
+  db.query(`UPDATE players SET last_request = NOW() WHERE player_id = $1 RETURNING *;`, [req.session.user_id], (err, dbRes) => {
 
-  db.query(`SELECT * FROM players;`, (err, dbRes) => {
-
-    res.json({ players: dbRes.rows })
+    db.query(`SELECT * FROM players WHERE last_request > NOW() - interval '4 seconds' ORDER BY player_id;`, (err, dbRes) => {
+      
+      res.json({ players: dbRes.rows })
+    })
   })
+
+  
 })
 
 // app.get('/lobby/:id', (req, res) => {
