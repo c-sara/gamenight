@@ -24,7 +24,6 @@ body {
 
 .settings {
     border: 1px solid black;
-    text.align: center;
 }
 
 </style>
@@ -34,23 +33,52 @@ body {
         <div class="gridwrap">
             <div class="create">
                 <h2>Create Game</h2>
-                <form action="creategame">
+                <!--FORM for creating a game -->
+                <!-- 
+                Need to pass through game name/id
+                Create a player
+                Set that player to host true?
+                Then route them to the game lobby
+                -->
+
+                <form class="newgameform" action="">
                 <label for="">Game Name:</label>
-                <input type="text">
-                <button>Create Game</button>
+                <input class="newgamenameinput" type="text">
+                <button class="newgamebtn">Create Game</button>
                 </form>
+                <!-- Intention is to create a new game in /game/:id and /lobby/:id -->
             </div>
 
             <div class="join">
-            <h2>Join Game</h2>
-                <form action="creategame">
+                <h2>Join Game</h2>
+                <!-- FORM for joining game -->
+                <form action="joingame">
                 <label for="">Game Name:</label>
                 <input type="text">
                 <button>Join Game</button>
+                </form>
             </div>
+                <!-- FORM FOR DIFFERENT SETTINGS -->
             <div class="settings">
                 <h2>Settings</h2>
+                <div>
+                <form class="gamesettings" action="">
+                <label for="">Rounds:</label>
+                <input class="gamerounds" type="text">
+                </div>
+                <div>
+                <label for="">Players:</label>
+                <input class="gameplayers" type="text">
+                </div>
+                <div>
+                <label for="">New Categories:</label>
+                <input class="gamenewcategories" type="text">
+                </div>
+
+                </form>
             </div>
         </div>
     </div>
+
+<script src="./js/index.js"></script>
 

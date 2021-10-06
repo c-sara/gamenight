@@ -16,6 +16,7 @@ CREATE TABLE players (
   player_id SERIAL PRIMARY KEY,
   display_name VARCHAR(20),
   game_id INT
+  -- host BOOLEAN   ?
 );
 
 INSERT INTO categories (category) VALUES ('animal');
@@ -33,3 +34,14 @@ CREATE TABLE results (
 );
 
 -- Things outside of DBs - tracking answers (use name="" in input) and player scores
+
+
+
+
+
+
+
+
+
+-- IGNORE THIS SHIT
+INSERT INTO players (display_name, game_id) VALUES ('Ben', 7);
