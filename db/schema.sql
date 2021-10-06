@@ -7,9 +7,9 @@ CREATE TABLE categories (
 
 CREATE TABLE games (
   game_id SERIAL PRIMARY KEY,
-  rounds INT,
-  players INT ARRAY,
-  categories INT ARRAY
+  rounds INT, 
+  players INT ARRAY, -- this will insert players into lobby
+  categories INT ARRAY -- this will bring up categories in game and marking-page
 );
 
 CREATE TABLE players (
@@ -30,6 +30,8 @@ INSERT INTO categories (category) VALUES ('movie');
 INSERT INTO categories (category) VALUES ('types of dogs');
 INSERT INTO categories (category) VALUES ('food');
 
+INSERT INTO games (categories) VALUES (ARRAY[1, 2, 3, 4, 5]);
+
 
 -- CREATE TABLE results (
 --   result_id SERIAL PRIMARY KEY,
@@ -41,14 +43,8 @@ INSERT INTO categories (category) VALUES ('food');
 -- Things outside of DBs - tracking answers (use name="" in input) and player scores
 
 
-
-
-
-
-
-
-
 -- IGNORE THIS SHIT
+-- Add players into lobby
 INSERT INTO players (display_name, game_id) VALUES ('Ben', 7);
 INSERT INTO players (display_name, game_id) VALUES ('Susan Swan', 4);
 INSERT INTO players (display_name, game_id) VALUES ('Player 3', 7);
