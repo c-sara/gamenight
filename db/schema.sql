@@ -27,7 +27,7 @@ CREATE TABLE players (
 INSERT INTO categories (category) VALUES ('animal');
 INSERT INTO categories (category) VALUES ('country');
 INSERT INTO categories (category) VALUES ('movie');
-INSERT INTO categories (category) VALUES ('types of dogs');
+INSERT INTO categories (category) VALUES ('dogBreeds');
 INSERT INTO categories (category) VALUES ('food');
 
 INSERT INTO games (categories) VALUES (ARRAY[1, 2, 3, 4, 5]);
@@ -49,3 +49,12 @@ INSERT INTO players (display_name, game_id) VALUES ('Ben', 7);
 INSERT INTO players (display_name, game_id) VALUES ('Susan Swan', 4);
 INSERT INTO players (display_name, game_id) VALUES ('Player 3', 7);
 INSERT INTO players (display_name, game_id) VALUES ('Player 4', 7);
+
+
+
+CREATE TABLE results (
+  result_id SERIAL PRIMARY KEY,
+  game_id INT,
+  player_id INT,
+  player_ans TEXT
+);

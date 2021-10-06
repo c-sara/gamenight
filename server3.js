@@ -73,43 +73,59 @@ app.get('/api/lobby', (req, res) => {
 
 })
 
-// app.get('/lobby/:id', (req, res) => {
-//   gameName = req.params.id
-//   req.session.user_id = 4 // Hard coded session user_id
-
-//   db.query(`SELECT * FROM players WHERE game_id = ${gameName}`, (err, dbRes) => {
-//     console.log(dbRes)
-//     res.render('lobby', { players: dbRes.rows, user_id: req.session.user_id, gameName: gameName })
-
-//   })
-
-// })
 
 app.get('/game', (req, res) => {
-    Game.categoriesByGame()
-    .then(dbRes => {
-        var gameCategories = dbRes.rows
-        
-        res.render('game', { user_id: req.session.user_id, gameCategories })
-    })
-    .catch(err => {
+    Category.all()
+        .then(dbRes => {
+            var categoryData = dbRes.rows
+
+            res.render('game', { user_id: req.session.user_id, categoryData })
+        })
+        .catch(err => {
             res.status(500)
                 .json({ itsNotYou: 'itsMe', message: err.message })
-    })
-
+        })
 })
 
 app.get('/marking-page', (req, res) => {
+    //as the client comes into the marking page their req.query gets inputted into a results database
+
+    //track what category got what answer and put in the player_id by ALTER TABLE. Column name is player_id and the value is their answer
+
+    //{ '1': 'jhjgf', '2': 'sddg', '3': 'hgf', '4': 'waq', '5': 'bnv' }
+    // db.query('')
+
+
+
+    // key          value 
+    // user_id     playeranser
+
+
+
+    // cat_id: answer
+
+    // alter the table so it has a collumn for this player
+
+    // db.query('ALTER TABLE results ADD COLUMN $1 RETURNING *;', [req.session.user_id], (err, dbRes) => {
+    //     db.query('UPDATE TABLE results SET ')
+    // })
+
+    //we then pass the all the results back to the client where the game id matches (only have single game atm.). order by player_id. template then responsible for displaying
+
+
+
+
     // have to check if user_id already has answers
     // not sure of the best way to go on it
+
+
+    console.log(req.query);
     if (req.session.answers) {
         req.session.answers.push(req.query)
     } else {
         req.session.answers = []
         req.session.answers.push(req.query)
     }
-
-    // console.log(req.session.answers);
 
     Game.categoriesByGame()
         .then(dbRes => {

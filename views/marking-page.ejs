@@ -1,5 +1,8 @@
 <% layout('layout') -%>
 
+
+<!-- I actually want to pull from a results database to populate this page. Game id all matching. each category is a row. and players answers are in columns. then for each row populate the category and each players response as buttons. -->
+
 <div class="wrapper">
   <!-- this will generate from the array in server.js
   div will have unique class -->
@@ -10,21 +13,20 @@
     <% }) %>
 
   </div>
-  <% answers.forEach(answer => { %>
+
+<!-- % console.log(answers) %> -->
+  <% var answersKeyValuePairsArray = Object.entries(answers[0]) %>
+  <% console.log(answersKeyValuePairsArray) %>
+
+  
     <div class="player-answer-div">
       <p>player 1</p>
-      <!-- UP TO HERE -->
-      <% gameCategories.forEach(category => { %>
-        <button class="point-btn"><%= answer.animalAns %></button>
-      
-      <% }) %>
-      <button class="point-btn"><%= answer.countryAns %></button>
-      <button class="point-btn"><%= answer.movieAns %></button>
-      <button class="point-btn"><%= answer.typesofdogsAns %></button>
-      <button class="point-btn"><%= answer.foodAns %></button>
+  <% answersKeyValuePairsArray.forEach(subArray => { %>
+    <% var answer = subArray[1] %>
+        <button class="point-btn"><%= answer %></button>
+  <% }) %>
       <p class="total-score">0</p>
     </div>
-  <% }) %>
   
   
   <!-- make an if statement that handles what to do if the round is 0 -->
