@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/reset.css">
-</head>
-<body>
+<% layout('layout') -%>
 
-  <h1>gamenight</h1>
-
+<div class="wrapper">
   <!-- this will generate from the array in server.js
   div will have unique class -->
-
+  
   <% answers.forEach(answer => { %>
     <div class="player-answer-div">
       <p>player 1</p>
@@ -25,13 +14,12 @@
       <button class="point-btn"><%= answer.foodAns %></button>
       <p class="total-score">0</p>
     </div>
-
+  
   <%}) %>
-
-
+  
+  
   <!-- make an if statement that handles what to do if the round is 0 -->
 
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="js/marking-page.js"></script>
-</body>
-</html>
+</div>
+
+<script src="js/marking-page.js"></script>

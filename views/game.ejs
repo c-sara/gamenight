@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Game Night</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/reset.css">
-</head>
-<body>
-  <h1>Game Night</h1>
+<% layout('layout') -%>
+
+<div class="wrapper">
   <h2>Letter: C</h2>
   <h3>Round: 1</h3>
   <form action="/marking-page">
@@ -18,31 +9,30 @@
       <label for="">Animal</label>
       <input type="text" name="animalAns" data-id="<%= user_id %>">
     </div>
-
+  
     <div class="input-label-group">
       <label for="">Country</label>
       <input type="text" name="countryAns" data-id="<%= user_id %>">
     </div>
-
+  
     <div class="input-label-group">
       <label for="">Movie</label>
       <input type="text" name="movieAns" data-id="<%= user_id %>">
     </div>
-
+  
     <div class="input-label-group">
       <label for="">Types of dogs</label>
       <input type="text" name="dogAns" data-id="<%= user_id %>">
     </div>
-
+  
     <div class="input-label-group">
       <label for="">Food</label>
       <input type="text" name="foodAns" data-id="<%= user_id %>">
     </div>
-
+  
     <button>Submit</button>
   </form>
-  
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  <script src="game.js"></script>
-</body>
-</html>
+
+</div>
+
+<script src="js/game.ejs"></script>
