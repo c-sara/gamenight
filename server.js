@@ -32,18 +32,33 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.get('/lobby/:id', (req, res) => {
-  gameName = req.params.id
-  req.session.user_id = 4 // Hard coded session user_id
+app.get('/lobby', (req, res) => {
 
-  db.query(`SELECT * FROM players WHERE game_id = ${gameName}`, (err, dbRes) => {
-    console.log(dbRes)
-    res.render('lobby', { players: dbRes.rows, user_id: req.session.user_id, gameName: gameName })
+  db.query(`SELECT * FROM players;`, (err, dbRes) => {
 
+    res.render('lobby')
   })
-
 })
 
+app.get('/api/lobby', (req, res) => {
+
+  db.query(`SELECT * FROM players;`, (err, dbRes) => {
+
+    res.json({ players: dbRes.rows })
+  })
+})
+
+// app.get('/lobby/:id', (req, res) => {
+//   gameName = req.params.id
+//   req.session.user_id = 4 // Hard coded session user_id
+
+//   db.query(`SELECT * FROM players WHERE game_id = ${gameName}`, (err, dbRes) => {
+//     console.log(dbRes)
+//     res.render('lobby', { players: dbRes.rows, user_id: req.session.user_id, gameName: gameName })
+
+//   })
+
+// })
 
 app.get('/game', (req, res) => {
   req.session.user_id = 4
