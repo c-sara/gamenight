@@ -1,14 +1,8 @@
-const { Pool } = require('pg')
-const db = new Pool({
-    database: 'gamenight',
-    password: 'test'
-})
+const db = require('../db/db')
 
 function all() {
-
   let sql = 'select * from games;'
   return db.query(sql)
-
 }
 
 function categoriesByGame() {
@@ -17,7 +11,25 @@ function categoriesByGame() {
   return db.query(sql)
 }
 
+function create(gameName) {
+  let sql = "INSERT INTO games (game_name) values ($1) returning *;"
+  return db.query(sql, [gameName])
+}
+
+function getGameByName(gameName) {
+  let sql = "SELECT * FROM games WHERE game_name=$1;"
+  return db.query(sql, [gameName])
+}
+
+function getGameById(gameId) {
+  let sql = "SELECT * FROM games WHERE game_id=$1;"
+  return db.query(sql, [gameId])
+}
+
 module.exports = {
   all,
-  categoriesByGame
+  categoriesByGame,
+  create,
+  getGameByName,
+  getGameById
 }

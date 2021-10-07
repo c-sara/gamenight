@@ -1,29 +1,42 @@
-// Do set interval
+let lobbyName = document.querySelector('.lobby-name')
+let startBtn = document.querySelector('.lobby-play-btn')
 
-//make it so the players table is tracking timestmps each time a response is made. 
-
-//then do the comparioson
+// renders "you're in lobby x"
+axios.get('/api/lobby')
+    .then(res => {
+      lobbyName.textContent = `You're in lobby ${res.data.gameId}`
+    })
+    .catch(err => {
+        lobbyName.innerHTML = `<a href="/">Something went wrong! Click here to return home</a>`
+        console.log(err.message)
+    })
 
 
 function renderPlayerList() {
 
     axios.get('/api/lobby')
         .then(res => {
-            var lobbyPlayerList = document.querySelector(".lobby-players-list")
-            var players = res.data.players
+            let lobbyPlayerList = document.querySelector(".lobby-players-list")
 
+            let players = res.data.players
             
             lobbyPlayerList.innerHTML = ""
 
             players.forEach(player => {
-                console.log(player)
-                //append these to an adult later
-                var p = document.createElement("p")
+                let p = document.createElement("p")
+                
+                if (player.host) {
+                    p.dataset.host = true
+                    startBtn.textContent = "Start"
+                    startBtn.disabled = false
+                }
+
                 lobbyPlayerList.appendChild(p)
                 p.textContent = player.display_name
             });
         })
 }
 
+// change back to 10 seconds
 setInterval(renderPlayerList, 3000)
 

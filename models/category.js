@@ -1,8 +1,4 @@
-const { Pool } = require('pg')
-const db = new Pool({
-    database: 'gamenight',
-    password: 'test'
-})
+const db = require('../db/db')
 
 function all() {
 
