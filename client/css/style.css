@@ -5,9 +5,17 @@
 body {
     background-color: #FCAF58;
     text-transform: lowercase;
+    font-family: 'Indie Flower', cursive;
 }
 
+
 /* layout center header */
+
+.title-link {
+    text-decoration: none;
+    color: black;
+    font-size: 40px;
+}
 
 .game {
     text-align: center;
@@ -53,6 +61,7 @@ body {
     border: 1px solid #320E3B;
     border-radius: 2px;
 }
+.index-dark-btn:hover {background-color: #087e8bcb}
 
 .light-btn {
     background-color: #320E3B;
@@ -63,6 +72,7 @@ body {
     border: 1px solid #087E8B;
     border-radius: 2px;
 }
+.light-btn:hover {background-color: #320e3bbf}
 
 /* Styling results page below */
 
@@ -72,7 +82,7 @@ body {
     text-align: center;
     margin: 10px auto;
     width: 50%;
-    background-color: rgb(255, 255, 255, 0.5);
+    border: 1px solid red;
     
 }
 
@@ -85,4 +95,5 @@ body {
     margin: 0 auto;
     text-align: center;
 }
+
 
