@@ -1,15 +1,25 @@
 /* INDEX.EJS CSS*/
 
 body {
-    background-color: #FCAF58;
+    background: linear-gradient(#FCAF58, #ebf8e1, #3f87a6 ) fixed;
     text-align: center;
+}
+
+.gap {
+    height: 10px;
+}
+
+.index-bodywrapper {
+    margin-bottom: 90px;
+    width: 65%;
+    margin: 0 auto;
 }
 
 
 .index-gridwrap {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr;
 }
 
 
@@ -22,13 +32,8 @@ body {
 }
 
 .index-settings {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     text-align: center;
-}
-
-.index-bodywrapper {
-    width: 50%;
-    margin: 0 auto;
 }
 
 .index-dark-btn {
@@ -39,8 +44,13 @@ body {
     padding: 0.5rem;
     border: 1px solid #320E3B;
     border-radius: 2px;
-    margin: 0 40%;
 }
+.index-dark-btn:hover {background-color: #087e8bcb}
+.index-dark-btn:active {
+    background-color: #087e8b;
+    box-shadow: 0 3px #666;
+    transform: translateY(4px);
+  }
 
 .index-light-btn {
     background-color: #320E3B;
@@ -50,5 +60,10 @@ body {
     padding: 0.5rem;
     border: 1px solid #087E8B;
     border-radius: 2px;
-    margin: 0 40%;
 }
+.index-light-btn:hover {background-color: #320e3bbf}
+.index-light-btn:active {
+    background-color: #087e8bcb;
+    box-shadow: 0 3px #666;
+    transform: translateY(4px);
+  }
