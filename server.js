@@ -8,7 +8,7 @@ const Game = require('./models/game.js')
 const Player = require('./models/player.js')
 const Results = require('./models/results.js')
 
-const gameAndMarkingPageRoutes = require('./routes/game_marking-page routes.js')
+const gameAndMarkingPageRoutes = require('./routes/game_marking_page_routes.js')
 const categoryRoutes = require('./routes/category_routes.js')
 const resultsRoutes = require('./routes/result_routes.js')
 const lobbyRoutes = require('./routes/lobby')

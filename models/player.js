@@ -12,7 +12,7 @@ function getAllActive(gameId) {
 
 function getPlayerById(player_id) {
     let sql = "SELECT * FROM players WHERE player_id = $1;"
-    return db.query(sql, [id])
+    return db.query(sql, [player_id])
 }
 
 // SELECT * FROM players WHERE last_request > NOW() - interval '10 seconds';
@@ -27,6 +27,7 @@ function updateTimeStamp(player_id) {
 module.exports = {
     create,
     getAllActive,
-    updateTimeStamp
+    updateTimeStamp,
+    getPlayerById
 }
 
