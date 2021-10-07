@@ -2,20 +2,28 @@ var express = require('express')
 var router = express.Router()
 
 const Results = require('../models/results.js')
+const Players = require('../models/player.js')
 
 router.get('/results', (req, res) => {
 
-  Results.winners()
-    .then(winnerRes => {
-      var winners = winnerRes.rows
+  Players.getPlayerById(req.session.user_id)
+    .then(dbRes => {
+      var gameId = dbRes.rows[0].game_id
 
-      Results.losers()
-        .then(loserRes => {
-          var losers = loserRes.rows
-
-          res.render('results', { winners, losers })
+      Results.winners()
+        .then(winnerRes => {
+          var winners = winnerRes.rows
+    
+          Results.losers()
+            .then(loserRes => {
+              var losers = loserRes.rows
+    
+              res.render('results', { gameId, winners, losers })
+            })
         })
+      
     })
+
 
 })
 
