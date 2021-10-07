@@ -52,8 +52,14 @@ body {
             <div class="join">
                 <h2>quick fix for adding player to table</h2>
                 <form method="get" action="/join-game">
-                    <label for="">Display Name:</label>
-                    <input name="displayName" type="text">
+                    <div class="input-label-group">
+                        <label for="">Display Name:</label>
+                        <input name="displayName" type="text">
+                    </div>
+                    <div class="input-label-group">
+                        <label for="">Game Name:</label>
+                        <input name="gameName" type="text">
+                    </div>
                     <button>Join Game</button>
                 </form>
             </div>

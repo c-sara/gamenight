@@ -7,6 +7,7 @@ CREATE TABLE categories (
 
 CREATE TABLE games (
   game_id SERIAL PRIMARY KEY,
+  game_name TEXT,
   rounds INT, 
   players INT ARRAY, -- this will insert players into lobby
   categories INT ARRAY -- this will bring up categories in game and marking-page
@@ -17,9 +18,8 @@ CREATE TABLE players (
   display_name VARCHAR(20),
   game_id INT,
   last_request TIMESTAMP,
-  -- active BOOLEAN, probably won't need (cache polution)
-  host BOOLEAN,
-  score INTEGER
+  host BOOLEAN DEFAULT false,
+  score INTEGER DEFAULT 0
 );
  -- Every time a user makes a request, check their ID, if they haven't responded within X amount
  -- If their previous timestamp minus their current timestamp 
