@@ -9,12 +9,13 @@ router.get('/results', (req, res) => {
   Players.getPlayerById(req.session.user_id)
     .then(dbRes => {
       var gameId = dbRes.rows[0].game_id
-
-      Results.winners()
+      console.log(gameId)
+      
+      Results.winners(gameId)
         .then(winnerRes => {
           var winners = winnerRes.rows
-    
-          Results.losers()
+          
+          Results.losers(gameId)
             .then(loserRes => {
               var losers = loserRes.rows
     

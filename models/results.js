@@ -4,27 +4,19 @@ const db = new Pool({
     // password: 'test'
 })
 
-// BELOW RANKS PLAYER BY SCORE
-// function scoreBoard() {
-//   let sql = 'SELECT * from players WHERE game_id = 1 ORDER BY score DESC;'
+function winners(game_id) {
+  let sql = 'SELECT * FROM players WHERE score = (SELECT max(score) FROM players) AND game_id = $1;'
 
-//   return db.query(sql)
-// }
-
-function winners() {
-  let sql = 'SELECT * FROM players WHERE score = (SELECT max(score) FROM players);'
-
-  return db.query(sql)
+  return db.query(sql, [game_id])
 }
 
-function losers() {
-  let sql = 'SELECT * FROM players WHERE score != (SELECT max(score) FROM players) ORDER BY score DESC;'
+function losers(game_id) {
+  let sql = 'SELECT * FROM players WHERE score != (SELECT max(score) FROM players) AND game_id = $1 ORDER BY score DESC;'
 
-  return db.query(sql)
+  return db.query(sql, [game_id])
 }
 
 module.exports = {
-  // scoreBoard,
   winners,
   losers
 }
