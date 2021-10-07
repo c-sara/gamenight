@@ -33,42 +33,16 @@ Our project was created using the following:
 * Heroku
 
 ## User stories 
+Are you bored? Well Game Night: Scattergories has got you covered!
+We wanted to create a game so that you can have fun~ all the while practicing our programming knowledge.
+
 
 ## Wireframes
 We created [our wireframe](https://lucid.app/lucidspark/81a7db82-4de7-447f-96cc-6dca7e7bf380/edit?invitationId=inv_a8eed7ea-23c3-4437-94e7-72f09981bd6c) on Lucid before we began to code. It was important to provide clear steps in our game so we had an understanding of what pieces were required to complete it.
 
 ## Diagrams (database schema)
 
-CREATE DATABASE gamenight;
-
-CREATE TABLE categories (
-  cat_id SERIAL PRIMARY KEY,
-  category VARCHAR(50)
-);
-
-CREATE TABLE games (
-  game_id SERIAL PRIMARY KEY,
-  game_name TEXT,
-  rounds INT, 
-  players INT ARRAY, -- this will insert players into lobby
-  categories INT ARRAY -- this will bring up categories in game and marking-page
-);
-
-CREATE TABLE players (
-  player_id SERIAL PRIMARY KEY,
-  display_name VARCHAR(20),
-  game_id INT,
-  last_request TIMESTAMP,
-  host BOOLEAN DEFAULT false,
-  score INTEGER DEFAULT 0,
-  active BOOLEAN DEFAULT false
-);
-CREATE TABLE results (
-  result_id SERIAL PRIMARY KEY,
-  game_id INT,
-  player_id INT,
-  player_ans TEXT
-);
+https://dbdiagram.io/d/615ecb43940c4c4eec89dea2
 
 ## Things we loved (optional)
 
