@@ -1,6 +1,22 @@
 let answerDivs = document.querySelectorAll('.marking-page-player-answer-div')
 
 function handleAddPoint(e) {
+    //increase or decrease players score in the players table
+    //by default btn states are false
+    //when clicked btn state goes to true
+    //if btn state is false and the btn is pressed +1 in player table
+    //if btn state is true and the btn is pressed -1 in player table
+
+
+    
+
+
+
+
+
+
+
+
 
     let clicked = e.target
     let parentDiv = clicked.closest('div')
