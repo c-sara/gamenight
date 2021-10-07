@@ -1,7 +1,4 @@
-const { Pool } = require('pg')
-const db = new Pool({
-    database: 'gamenight'
-})
+const db = require('../db/db')
 
 function all() {
   let sql = 'select * from games;'

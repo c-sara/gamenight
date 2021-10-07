@@ -1,7 +1,7 @@
 const express = require('express')
 const engine = require('ejs-mate')
 const app = express()
-const port = 8080
+const port = process.env.port || 8080
 
 const Category = require('./models/category.js')
 const Game = require('./models/game.js')
@@ -31,10 +31,14 @@ app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(session({
+    key: 'user_sid',
     secret: 'susan swan',
-    resave: true,
-    saveUninitialized: true
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }))
+
+
 
 app.get('/', (req, res) => {
     // console.log(req)

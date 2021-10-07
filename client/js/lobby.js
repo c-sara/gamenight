@@ -1,3 +1,9 @@
+let lobbyName = document.querySelector('lobby-name')
+
+// renders "you're in lobby x"
+axios.get('/api/lobby')
+    .then()
+
 // Do set interval
 
 //make it so the players table is tracking timestmps each time a response is made. 
@@ -10,6 +16,7 @@ function renderPlayerList() {
     axios.get('/api/lobby')
         .then(res => {
             var lobbyPlayerList = document.querySelector(".lobby-players-list")
+
             var players = res.data.players
 
             
