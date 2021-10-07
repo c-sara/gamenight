@@ -1,10 +1,12 @@
 <link rel="stylesheet" href="index.css">
 <% layout('layout') -%>
 <div class="gap"></div>
+<div class="gap"></div>
     <div class="index-bodywrapper">
         <div class="index-gridwrap">
             <div class="index-create">
                 <h2>Create Game</h2>
+                <div class="gap"></div>
                 <form method="get" action="/create-game">
                     <div class="index-input-label-group">
                         <label for="">Game Name:</label>
@@ -16,6 +18,7 @@
                         <div></div>
                         <input name="displayName" type="text"> 
                     </div>
+                    <div class="gap"></div>
                     <button class="index-dark-btn">Create Game</button>
                 </form>
             </div>
@@ -25,6 +28,7 @@
 
             <div class="index-join">
                 <h2>Join Game</h2>
+                <div class="gap"></div>
                 <form method="get" action="/join-game">
                     <div class="index-input-label-group">
                         <label for=""><h3>Display Name:</h3></label>
@@ -36,17 +40,17 @@
                         <div></div>
                         <input name="gameName" type="text">
                     </div>
+                    <div class="gap"></div>
                     <button class="index-light-btn">Join Game</button>
                 </form>
             </div>
-
-
-
         </div>
-                    <div class="index-settings">
-                <h2>Settings</h2>
-            </div>
-    </div>
+        <!-- UNCOMMENT IF YOU WANT TO ADD SETTINGS -->
+        <!--<div class="gap"></div>
+                <div class="index-settings">
+                    <h2>Settings</h2>
+                </div> -->
+</div>
 
 <script src="./js/index.js"></script>
 

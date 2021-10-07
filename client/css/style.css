@@ -8,26 +8,19 @@ body {
     font-family: 'Indie Flower', cursive;
 }
 
+h1 {
+    font-size: 80px;
+}
 
+h2 {
+    font-size: 50px
+}
 /* layout center header */
 
 .title-link {
     text-decoration: none;
     color: black;
     font-size: 40px;
-}
-
-.game {
-    text-align: center;
-}
-
-.game-stats-nav {
-    background-color: #320E3B;
-    color: white;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 1rem 0; 
-    margin: 0.5rem 0;
 }
 
 .input-label-group {
@@ -97,3 +90,39 @@ body {
 }
 
 
+/* LOBBY CSS */
+
+.lobby-play-btn {
+        background-color: #320E3B;
+        color: white;
+        font-weight: 600;
+        letter-spacing: .5px;
+        padding: 0.5rem;
+        border: 1px solid #087E8B;
+        border-radius: 2px;
+
+}
+.lobby-play-btn:hover {background-color: #320e3bbf}
+
+/* GAME CSS BELOW */
+
+
+.game-wrapper-main {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.game {
+    text-align: center;
+}
+
+.game-stats-nav {
+    background-color: #320E3B;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem 0; 
+    margin: 0.5rem 0;
+    border: 2px solid rgb(193, 152, 30);
+    border-radius: 20px;
+}
