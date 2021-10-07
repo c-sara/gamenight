@@ -13,6 +13,7 @@ const categoryRoutes = require('./routes/category_routes.js')
 const resultsRoutes = require('./routes/result_routes.js')
 const lobbyRoutes = require('./routes/lobby')
 const gameRoutes = require('./routes/game_routes')
+const playerRoutes = require('./routes/player_routes')
 
 let session = require('express-session')
 
@@ -40,6 +41,7 @@ app.get('/', (req, res) => {
 
 app.use('/', lobbyRoutes)
 app.use('/', gameRoutes)
+app.use('/', playerRoutes)
 
 app.use(gameAndMarkingPageRoutes)
 
