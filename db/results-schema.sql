@@ -24,3 +24,9 @@ select * from players where score = (select max(score) from players);
 select * from players where score != (select max(score) from players);
 
 select * from players where score != (select max(score) from players) order by score desc;
+
+INSERT INTO players (display_name, game_id, score) values ('apple', 5, 6);
+INSERT INTO players (display_name, game_id, score) values ('orange', 5, 5);
+INSERT INTO players (display_name, game_id, score) values ('pear', 5, 4);
+INSERT INTO players (display_name, game_id, score) values ('kiwi', 5, 3);
+INSERT INTO players (display_name, game_id, score) values ('lemon', 5, 2);
