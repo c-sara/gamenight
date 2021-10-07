@@ -55,7 +55,6 @@ function renderPlayerList() {
                 ready.push(player.ready)
             });
 
-            console.log(ready)
         })
 }
 
