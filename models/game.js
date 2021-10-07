@@ -9,9 +9,11 @@ function addPointInPlayerTable(value, player_id){
   db.query(`UPDATE players SET score = score + $1 WHERE player_id = $2;`, [value, player_id])
 }
 
-function returnPlayersPoints() {
-  let sql = `SELECT  `
 
+//where game_id matches the game
+function returnPlayersPoints() {
+  let sql = `SELECT players_id, score FROM players;`
+  return db.query(sql)
 }
 
 function categoriesByGame() {
