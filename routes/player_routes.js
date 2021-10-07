@@ -14,6 +14,16 @@ router.get('/api/players', (req, res) => {
         })
 })
 
+router.get('/api/marking-page', (req, res) => {
+    res.json(req.session.user_id)
+})
+
+// router.patch('/api/marking-page', (req, res) => {
+
+
+
+// })
+
 router.patch('/api/players/:id', (req, res) => {
     let playerId = req.params.id
     Player.updatePlayerReady(playerId)

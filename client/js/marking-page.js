@@ -7,6 +7,7 @@ var user_id = null
 
 
 function addPointInPlayerTable(value, player_id){
+
     db.query(`UPDATE players SET score = score + $1 WHERE player_id = $2;`, [value, player_id])
 }
   
@@ -25,6 +26,9 @@ function getUser_id(){
         })
 }
 
+
+getUser_id()
+
 function handleAddPoint(e) {
     //increase or decrease players score in the players table
     //by default btn states are false
@@ -38,7 +42,7 @@ function handleAddPoint(e) {
     if (clicked.classList.contains('marking-page-answer-btn')) {
         clicked.classList.toggle('clicked')
         if (clicked.classList.contains('clicked')){
-            //session id appears to be fucked atm ask sarah leah where its being set (if it is)
+            axios()
             addPointInPlayerTable(1, req.session.user_id)
         } else {
             addPointInPlayerTable(-1, req.session.user_id)

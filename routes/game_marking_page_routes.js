@@ -71,9 +71,6 @@ router.post('/marking-page', (req, res) => {
         })
 })
 
-router.get('/api/marking-page', (req, res) => {
-    res.send(req.session.user_id)
-})
 
 
 module.exports = router
