@@ -2,12 +2,11 @@
 
 let answerDivs = document.querySelectorAll('.marking-page-individual-answer-div')
 
-var user_id = null 
+var userId = null 
 //add the polling function to grab up to date scores 
 
 
 function addPointInPlayerTable(value, player_id){
-
     db.query(`UPDATE players SET score = score + $1 WHERE player_id = $2;`, [value, player_id])
 }
   
@@ -18,16 +17,16 @@ function returnPlayersPoints() {
     return db.query(sql)
 }
 
-function getUser_id(){
+function getUserId(){
     axios.get('/api/marking-page')
         .then(res => {
-            user_id = res
-            console.log(user_id);
+            userId = res.data.userId
+            return userId
         })
 }
 
 
-getUser_id()
+console.log(getUserId())
 
 function handleAddPoint(e) {
     //increase or decrease players score in the players table
@@ -36,16 +35,29 @@ function handleAddPoint(e) {
     //if btn state is false and the btn is pressed +1 in player table
     //if btn state is true and the btn is pressed -1 in player table
 
-    getUser_id()
+    // getUserId()
     
+
+
+    //combine the addpoint and get user id into one single api call
     let clicked = e.target
+
+    console.log(clicked.dataset.userId);
     if (clicked.classList.contains('marking-page-answer-btn')) {
         clicked.classList.toggle('clicked')
         if (clicked.classList.contains('clicked')){
-            axios()
-            addPointInPlayerTable(1, req.session.user_id)
+            //adds 1 to score
+            axios.put('/api/marking-page', {scoreChange: "increase"}, )
+            //pass in the btn owner player id
+
+
+            // addPointInPlayerTable(1, req.session.user_id)
         } else {
-            addPointInPlayerTable(-1, req.session.user_id)
+            //subtract by one
+            axios.put('/api/marking-page', {scoreChange: "decrease"})
+
+
+            // addPointInPlayerTable(-1, req.session.user_id)
         }
     }
 }

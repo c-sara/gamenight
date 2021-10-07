@@ -60,7 +60,7 @@ router.post('/marking-page', (req, res) => {
         .then(dbRes => {
             var answerData = dbRes.rows
 
-            // console.log(answerData);
+            console.log(answerData);
             var cat_IDsInGame = Object.keys(answerData[0].player_ans)
             getCategoriesByCat_Id(cat_IDsInGame)
                 .then(dbRes => {
