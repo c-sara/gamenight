@@ -22,7 +22,7 @@
         <% var answerArray = Object.values(player.player_ans) %>
         <% answerArray.forEach(answer => { %>
           <div class="marking-page-individual-answer-div">
-            <button class="marking-page-answer-btn"><%= answer||"😰"%></button>
+            <button data-userId="<%= player.player_id %>" class="marking-page-answer-btn"><%= answer||"😰"%></button>
           </div>
         <% }) %>
         <div class="marking-page-player-score-div">

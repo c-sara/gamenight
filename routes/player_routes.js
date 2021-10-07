@@ -14,9 +14,35 @@ router.get('/api/players', (req, res) => {
         })
 })
 
-router.get('/api/marking-page', (req, res) => {
-    res.json(req.session.user_id)
+router.put('/api/marking-page', (req, res) => {
+    //this api call has to be responsible for adding one score into the relevant players record
+
+    //determine whether to plus one or minus one.
+
+    //update the table at the appropriate players score column (by first identifing the player who owns the button's id)
+
+    var instruction = req.body.scoreChange
+
+    if (instruction === 'increase') {
+        
+
+    }
+
+
+
+
+    // res.json({ userId: req.session.user_id} )
 })
+
+// router.delete('/api/marking-page', (req, res) => {
+//     //this api call removes one score from relevant player record
+
+// })
+
+
+
+
+
 
 // router.patch('/api/marking-page', (req, res) => {
 
