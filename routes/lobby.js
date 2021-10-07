@@ -11,15 +11,14 @@ router.get('/api/lobby', (req, res) => {
         .then(dbRes => {
             let gameId = dbRes.rows[0].game_id
             return Players.getAllActive(gameId)
-                
         })
         .then(dbRes => {
+            let gameId = dbRes.rows[0].game_id
             res.json({ players: dbRes.rows, gameId })
         })
         .catch(err => {
             res.json({ message: err.message })
         })
-    
     
 })
 
