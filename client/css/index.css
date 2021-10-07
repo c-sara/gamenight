@@ -1,17 +1,20 @@
 /* INDEX.EJS CSS*/
 
 body {
-    background: linear-gradient(#FCAF58, #ebf8e1, #3f87a6 ) fixed;
+    background-image:url(https://i.imgur.com/Cy8pMWO.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: linear-gradient(#FCAF58, #ebf8e1, #3f87a6 ) fixed;
     text-align: center;
 }
 
 .gap {
-    height: 10px;
+    height: 20px;
 }
 
 .index-bodywrapper {
     margin-bottom: 90px;
-    width: 65%;
+    width: 50%;
     margin: 0 auto;
 }
 
@@ -24,11 +27,11 @@ body {
 
 
 .index-create {
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .index-join {
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .index-settings {
@@ -46,6 +49,7 @@ body {
     border-radius: 2px;
 }
 .index-dark-btn:hover {background-color: #087e8bcb}
+
 .index-dark-btn:active {
     background-color: #087e8b;
     box-shadow: 0 3px #666;
@@ -67,3 +71,4 @@ body {
     box-shadow: 0 3px #666;
     transform: translateY(4px);
   }
+
