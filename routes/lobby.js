@@ -10,23 +10,19 @@ router.get('/api/lobby', (req, res) => {
     Players.updateTimeStamp(playerId)
         .then(dbRes => {
             let gameId = dbRes.rows[0].game_id
-            Players.getAllActive(gameId)
-                .then(secDbRes => {
-                    res.json({ players: secDbRes.rows, gameId })
-                })
-                .catch(err => {
-                    console.log(err.message)
-                })
+            return Players.getAllActive(gameId)
+        })
+        .then(dbRes => {
+            let gameId = dbRes.rows[0].game_id
+            res.json({ players: dbRes.rows, gameId })
         })
         .catch(err => {
             res.json({ message: err.message })
         })
     
-    
 })
 
 router.get('/lobby', (req, res) => {
-
     res.render('lobby')
 })
 
