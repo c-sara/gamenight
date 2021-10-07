@@ -19,7 +19,8 @@ CREATE TABLE players (
   game_id INT,
   last_request TIMESTAMP,
   host BOOLEAN DEFAULT false,
-  score INTEGER DEFAULT 0
+  score INTEGER DEFAULT 0,
+  active BOOLEAN DEFAULT false
 );
  -- Every time a user makes a request, check their ID, if they haven't responded within X amount
  -- If their previous timestamp minus their current timestamp 
