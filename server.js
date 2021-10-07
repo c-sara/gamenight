@@ -7,6 +7,8 @@ const Category = require('./models/category.js')
 const Game = require('./models/game.js')
 const Player = require('./models/player.js')
 
+const categoryRoutes = require('./routes/category_routes.js')
+
 const { Pool } = require('pg')
 const db = new Pool({
     database: 'gamenight',
@@ -195,31 +197,7 @@ app.get('/api/games', (req, res) => {
         })
 })
 
-app.get('/api/categories', (req, res) => {
-    Category.all()
-        .then(dbRes => {
-            res.json(dbRes.rows)
-        })
-        .catch(err => {
-            res.status(500)
-                .json({ itsNotYou: 'itsMe', message: err.message })
-        })
-})
-
-// new category sent through body
-// I have no preference on this just did it this way :)
-app.post('/api/categories', (req, res) => {
-    let category = req.body.category
-    Category.create(category)
-        .then(dbRes => {
-            res.status(200)
-                .json({ message: 'success!', category: dbRes.rows[0] })
-        })
-        .catch(err => {
-            res.status(500)
-                .json({ thatsOn: 'us', message: err.message })
-        })
-})
+app.use('/api', categoryRoutes)
 
 app.listen(port, () => {
     console.log('listening on port ' + port)
