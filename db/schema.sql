@@ -27,7 +27,7 @@ CREATE TABLE players (
 INSERT INTO categories (category) VALUES ('animal');
 INSERT INTO categories (category) VALUES ('country');
 INSERT INTO categories (category) VALUES ('movie');
-INSERT INTO categories (category) VALUES ('dogBreeds');
+INSERT INTO categories (category) VALUES ('types of dog');
 INSERT INTO categories (category) VALUES ('food');
 
 INSERT INTO games (categories) VALUES (ARRAY[1, 2, 3, 4, 5]);

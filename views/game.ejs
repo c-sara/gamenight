@@ -14,7 +14,7 @@
 
   <button class="game-timer-btn light-btn">Start timer</button>
 
-  <form action="/marking-page">
+  <form action="/marking-page" method="post">
     <% categoryData.forEach(category => { %>
       <div class="input-label-group">
         <label for="" class="label"><%= category.category %></label>

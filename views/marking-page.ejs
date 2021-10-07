@@ -1,36 +1,40 @@
 <% layout('layout') -%>
 
+<!--- change player id to player display name --->
+<!--- add the button event to triger colour change and table update --->
 
-<!-- I actually want to pull from a results database to populate this page. Game id all matching. each category is a row. and players answers are in columns. then for each row populate the category and each players response as buttons. -->
 
-<div class="wrapper">
-  <!-- this will generate from the array in server.js
-  div will have unique class -->
-  <div class="categories player-answer-div">
-    <% gameCategories.forEach(category => { %>
-      <h4 class="category-h4"><%= category.category %></h4>
-    
+<div class="marking-page-main">
+  <div class="marking-page-categories-wrapper">
+    <h4>
+      Categories
+    </h4>
+    <% categoryNamesInGame.forEach(category => { %>
+        <p>
+          <label class="marking-page-category-label"><%= category.category %></label>
+        </p>
+    <% }) %>
+  </div>
+  <div class="marking-page-player-answers-wrapper">
+    <% answerData.forEach(player => { %>
+      <div class="marking-page-player-answer-wrapper">
+        <h4>Player id: <%= player.player_id %></h4>
+        <% var answerArray = Object.values(player.player_ans) %>
+        <% answerArray.forEach(answer => { %>
+          <div class="marking-page-individual-answer-div">
+            <button class="marking-page-answer-btn"><%= answer||"😰"%></button>
+          </div>
+        <% }) %>
+        <div class="marking-page-player-score-div">
+          Score: <span class="<%= player.player_id %>_score">0</span>
+        </div>
+      </div>
     <% }) %>
 
   </div>
-
-<!-- % console.log(answers) %> -->
-  <% var answersKeyValuePairsArray = Object.entries(answers[0]) %>
-  <% console.log(answersKeyValuePairsArray) %>
-
-  
-    <div class="player-answer-div">
-      <p>player 1</p>
-  <% answersKeyValuePairsArray.forEach(subArray => { %>
-    <% var answer = subArray[1] %>
-        <button class="point-btn"><%= answer %></button>
-  <% }) %>
-      <p class="total-score">0</p>
-    </div>
-  
-  
-  <!-- make an if statement that handles what to do if the round is 0 -->
-
 </div>
+
+
+
 
 <script src="js/marking-page.js"></script>
