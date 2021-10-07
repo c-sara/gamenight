@@ -15,6 +15,7 @@ function getPlayerById(player_id) {
     return db.query(sql, [player_id])
 }
 
+
 // SELECT * FROM players WHERE last_request > NOW() - interval '10 seconds';
 
 // UPDATE players SET last_request = NOW() WHERE player_id = 23 RETURNING *;
