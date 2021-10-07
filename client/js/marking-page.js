@@ -1,4 +1,4 @@
-let answerDivs = document.querySelectorAll('.player-answer-div')
+let answerDivs = document.querySelectorAll('.marking-page-player-answer-div')
 
 function handleAddPoint(e) {
 
@@ -18,6 +18,10 @@ function handleAddPoint(e) {
     
     score.textContent = clickedBtns.length
 
+    //toggles a clicked
+    //sends an update to player table in their scores (+1 if its toggled - 1 if its not)
+    //everyone is polling the server 2 seconds to render up to date scores
+
 }
 
 answerDivs.forEach(answerDiv => {
@@ -27,7 +31,7 @@ answerDivs.forEach(answerDiv => {
     answerDiv.style.textAlign = 'center'
 })
 
-let wrapper = document.querySelector('.wrapper')
+let wrapper = document.querySelector('.marking-page-main')
 
 wrapper.style.display = 'grid'
 wrapper.style.gridTemplateColumns = `repeat(${answerDivs.length}, 1fr)`

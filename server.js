@@ -7,6 +7,7 @@ const Category = require('./models/category.js')
 const Game = require('./models/game.js')
 const Player = require('./models/player.js')
 
+const gameAndMarkingPageRoutes = require('./routes/game_marking-page routes.js')
 const categoryRoutes = require('./routes/category_routes.js')
 
 const { Pool } = require('pg')
@@ -22,8 +23,10 @@ app.use(express.static('client'))
 app.engine('ejs', engine)
 app.set('view engine', 'ejs')
 
+
 // assign it in req.body
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(session({
     secret: 'susan swan',
     resave: true,
@@ -121,81 +124,7 @@ app.get('/api/lobby', (req, res) => {
 })
 
 
-app.get('/game', (req, res) => {
-    Category.all()
-        .then(dbRes => {
-            var categoryData = dbRes.rows
-
-            res.render('game', { user_id: req.session.user_id, categoryData })
-        })
-        .catch(err => {
-            res.status(500)
-                .json({ itsNotYou: 'itsMe', message: err.message })
-        })
-})
-
-app.get('/marking-page', (req, res) => {
-    //as the client comes into the marking page their req.query gets inputted into a results database
-
-    //track what category got what answer and put in the player_id by ALTER TABLE. Column name is player_id and the value is their answer
-
-    //{ '1': 'jhjgf', '2': 'sddg', '3': 'hgf', '4': 'waq', '5': 'bnv' }
-    // db.query('')
-
-
-
-    // key          value 
-    // user_id     playeranser
-
-
-
-    // cat_id: answer
-
-    // alter the table so it has a collumn for this player
-
-    // db.query('ALTER TABLE results ADD COLUMN $1 RETURNING *;', [req.session.user_id], (err, dbRes) => {
-    //     db.query('UPDATE TABLE results SET ')
-    // })
-
-    //we then pass the all the results back to the client where the game id matches (only have single game atm.). order by player_id. template then responsible for displaying
-
-
-
-
-    // have to check if user_id already has answers
-    // not sure of the best way to go on it
-
-
-    console.log(req.query);
-    if (req.session.answers) {
-        req.session.answers.push(req.query)
-    } else {
-        req.session.answers = []
-        req.session.answers.push(req.query)
-    }
-
-    Game.categoriesByGame()
-        .then(dbRes => {
-            var gameCategories = dbRes.rows
-            
-            res.render('marking-page', { answers: req.session.answers, gameCategories })
-        })
-        .catch(err => {
-                res.status(500)
-                    .json({ itsNotYou: 'itsMe', message: err.message })
-        })
-})
-
-app.get('/api/games', (req, res) => {
-    Game.all()
-        .then(dbRes => {
-            res.json(dbRes.rows)
-        })
-        .catch(err => {
-            res.status(500)
-                .json({ itsNotYou: 'itsMe', message: err.message })
-        })
-})
+app.use(gameAndMarkingPageRoutes)
 
 app.use('/api', categoryRoutes)
 
