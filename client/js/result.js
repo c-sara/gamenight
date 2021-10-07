@@ -1,6 +1,8 @@
 let winningMsg = document.querySelectorAll('.results-winner')
 let losingMsg = document.querySelectorAll('.results-loser')
 
+const endGameBtn = document.querySelector('.results-end-game-btn')
+
 function randomWinningMsg() {
   const winningMsg = [
     'yay',

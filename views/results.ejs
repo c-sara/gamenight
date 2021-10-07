@@ -11,21 +11,32 @@
 <div class="gap"></div>
 <div class="results-wrapper">
   <form action="/">
-    <h1 class="results-title">Winners</h1>
+
+      <% if(winners.length === 1) { %>
+        <h1 class="results-title">Winner</h1>
+      <% } else { %>
+        <h1 class="results-title">Winners</h1>
+      <% } %>
+
     <div class="winner-wrapper"> 
       <% winners.forEach(winner => { %>
         <span class="results-display-name"><%= winner.display_name %></span> 
         <span class="results-total">score: <%=winner.score %></span>
-        <span class="results-winner">WINNER</span>
+        <span class="results-winner">WINNER MESSAGE</span>
       <% }) %>
     </div>
 
-    <h1 class="results-title">Losers</h2>
+      <% if(losers.length === 1) { %>
+        <h1 class="results-title">Loser</h2>
+      <% } else { %>
+        <h1 class="results-title">Losers</h2>
+      <% } %>
+
     <div class="loser-wrapper"> 
       <% losers.forEach(loser => { %>
         <span class="results-display-name"><%= loser.display_name %></span> 
         <span class="results-total">score: <%=loser.score %></span>
-        <span class="results-loser">LOSER</span>
+        <span class="results-loser">LOSER MESSAGE</span>
       <% }) %>
     </div>
     
@@ -36,5 +47,5 @@
 </div>
 
 
-<script src="js/results.js"></script>
+<script src="js/result.js"></script>
 

@@ -71,7 +71,7 @@ h2 {
 
 .winner-wrapper, .loser-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr;
+    grid-template-columns: 1fr 1fr 1.5fr;
     text-align: center;
     margin: 10px auto;
     width: 50%;
