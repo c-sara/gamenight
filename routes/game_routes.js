@@ -24,18 +24,21 @@ eg. localhost:8080/lobby/7
 eg. localhost:8080/lobby/gameName
 */
 
-router.get('/host', (req, res) => {
+router.get('/create-game', (req, res) => {
     var gameName = req.query.gameName
     var displayName = req.query.displayName
     Game.create(gameName)
         .then(dbRes => {
             let gameId = dbRes.rows[0].game_id
-            Player.create(displayName, gameId, true)
+            return Player.create(displayName, gameId, true)
+        })
+        .then(dbRes => {
+            req.session.user_id = dbRes.rows[0].player_id
+            res.redirect('/lobby')
         })
         .catch(err => {
             console.log(err.message)
         })
-    res.redirect('/lobby')
 })
 
 router.get('/join-game', (req, res) => {
@@ -46,12 +49,15 @@ router.get('/join-game', (req, res) => {
     Game.getGameByName(gameName)
         .then(dbRes => {
             let gameId = dbRes.rows[0].game_id
-            Player.create(displayName, gameId)
-                .then(secDbRes => {
-                    req.session.user_id = secDbRes.rows[0].player_id
-
-                    res.redirect('/lobby')
-                })
+            return Player.create(displayName, gameId)
+        })
+        .then(dbRes => {
+            req.session.user_id = dbRes.rows[0].player_id
+            res.redirect('/lobby')
+        })
+        .catch(err => {
+            console.log('oi')
+            console.log(err.message)
         })
 
 })

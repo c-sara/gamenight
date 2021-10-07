@@ -14,11 +14,6 @@ const resultsRoutes = require('./routes/result_routes.js')
 const lobbyRoutes = require('./routes/lobby')
 const gameRoutes = require('./routes/game_routes')
 
-const { Pool } = require('pg')
-const db = new Pool({
-    database: 'gamenight'
-})
-
 let session = require('express-session')
 
 

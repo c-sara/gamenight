@@ -21,9 +21,15 @@ function getGameByName(gameName) {
   return db.query(sql, [gameName])
 }
 
+function getGameById(gameId) {
+  let sql = "SELECT * FROM games WHERE game_id=$1;"
+  return db.query(sql, [gameId])
+}
+
 module.exports = {
   all,
   categoriesByGame,
   create,
-  getGameByName
+  getGameByName,
+  getGameById
 }

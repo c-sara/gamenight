@@ -17,8 +17,7 @@ router.get('/api/lobby', (req, res) => {
             let gameId = dbRes.rows[0].game_id
             Players.getAllActive(gameId)
                 .then(secDbRes => {
-                    console.log(secDbRes.rows)
-                    res.json({ players: secDbRes.rows })
+                    res.json({ players: secDbRes.rows, gameId })
                 })
                 .catch(err => {
                     console.log(err.message)

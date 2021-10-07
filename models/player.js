@@ -10,6 +10,11 @@ function getAllActive(gameId) {
     return db.query(sql, [gameId])
 }
 
+function getPlayerById(player_id) {
+    let sql = "SELECT * FROM players WHERE player_id = $1;"
+    return db.query(sql, [id])
+}
+
 // SELECT * FROM players WHERE last_request > NOW() - interval '10 seconds';
 
 // UPDATE players SET last_request = NOW() WHERE player_id = 23 RETURNING *;
