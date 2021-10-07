@@ -19,7 +19,6 @@ router.get('/api/lobby', (req, res) => {
         .catch(err => {
             res.json({ message: err.message })
         })
-    
 })
 
 router.get('/lobby', (req, res) => {

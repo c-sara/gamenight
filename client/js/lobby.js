@@ -26,8 +26,8 @@ function renderPlayerList() {
                 let p = document.createElement("p")
                 
                 if (player.host) {
-                    p.dataset.host = true
-                    startBtn.textContent = "Start"
+                    p.dataset.id = player.player_id
+                    startBtn.textContent = "Ready"
                     startBtn.disabled = false
                 }
 
@@ -37,6 +37,12 @@ function renderPlayerList() {
         })
 }
 
-// change back to 10 seconds
+function handleGameStart(e) {
+    let playerId = document.querySelector('[data-id]')
+    axios.patch('/api/players/:id')
+}
+
+startBtn.addEventListener('click', handleGameStart)
+
 setInterval(renderPlayerList, 3000)
 

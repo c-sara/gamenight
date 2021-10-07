@@ -24,10 +24,22 @@ function updateTimeStamp(player_id) {
     return db.query(sql, [player_id])
 }
 
+function updatePlayerReady(player_id) {
+    let sql = `UPDATE players SET ready = true WHERE player_id = $1 RETURNING *;`
+    return db.query(sql, [player_id])
+}
+
+function getAll() {
+    let sql = "SELECT * FROM players;"
+    return db.query(sql)
+}
+
 module.exports = {
     create,
     getAllActive,
     updateTimeStamp,
-    getPlayerById
+    getPlayerById,
+    updatePlayerReady,
+    getAll
 }
 
