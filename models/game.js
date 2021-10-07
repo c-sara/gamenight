@@ -5,17 +5,6 @@ function all() {
   return db.query(sql)
 }
 
-function addPointInPlayerTable(value, player_id){
-  db.query(`UPDATE players SET score = score + $1 WHERE player_id = $2;`, [value, player_id])
-}
-
-
-//where game_id matches the game
-function returnPlayersPoints() {
-  let sql = `SELECT players_id, score FROM players;`
-  return db.query(sql)
-}
-
 function categoriesByGame() {
   let sql = 'SELECT categories.category FROM games INNER JOIN categories ON categories.cat_id = ANY(games.categories) WHERE games.game_id = 1;'
 
