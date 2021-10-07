@@ -6,9 +6,11 @@ const port = 8080
 const Category = require('./models/category.js')
 const Game = require('./models/game.js')
 const Player = require('./models/player.js')
+const Results = require('./models/results.js')
 
 const gameAndMarkingPageRoutes = require('./routes/game_marking-page routes.js')
 const categoryRoutes = require('./routes/category_routes.js')
+const resultsRoutes = require('./routes/result_routes.js')
 
 const { Pool } = require('pg')
 const db = new Pool({
@@ -127,6 +129,8 @@ app.get('/api/lobby', (req, res) => {
 app.use(gameAndMarkingPageRoutes)
 
 app.use('/api', categoryRoutes)
+
+app.use('/', resultsRoutes)
 
 app.listen(port, () => {
     console.log('listening on port ' + port)
