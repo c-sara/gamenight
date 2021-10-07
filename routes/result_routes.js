@@ -8,7 +8,8 @@ router.get('/results', (req, res) => {
 
   Players.getPlayerById(req.session.user_id)
     .then(dbRes => {
-      var gameId = dbRes.rows[0].game_id
+      // var gameId = dbRes.rows[0].game_id
+      var gameId = 5
       console.log(gameId)
       
       Results.winners(gameId)
