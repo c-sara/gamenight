@@ -5,13 +5,13 @@ const db = new Pool({
 })
 
 function winners(game_id) {
-  let sql = 'SELECT * FROM players WHERE score = (SELECT max(score) FROM players) AND game_id = $1;'
+  let sql = 'SELECT * FROM players WHERE score = (SELECT max(score) FROM players WHERE game_id = $1) AND game_id = $1;'
 
   return db.query(sql, [game_id])
 }
 
 function losers(game_id) {
-  let sql = 'SELECT * FROM players WHERE score != (SELECT max(score) FROM players) AND game_id = $1 ORDER BY score DESC;'
+  let sql = 'SELECT * FROM players WHERE score != (SELECT max(score) FROM players WHERE game_id = $1) AND game_id = $1 ORDER BY score DESC;'
 
   return db.query(sql, [game_id])
 }
