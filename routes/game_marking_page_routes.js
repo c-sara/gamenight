@@ -6,14 +6,7 @@ const Category = require('../models/category.js')
 const Game = require('../models/game.js')
 const Player = require('../models/player.js')
 
-
-const { Pool } = require('pg')
-const db = new Pool({
-    database: 'gamenight',
-    password: 'test'
-})
-
-
+const db = require('../db/db')
 
 function getCategoriesByCat_Id(arrayOfIDs){
     return db.query(`SELECT * FROM categories WHERE cat_id IN (${arrayOfIDs.join(',')});`)

@@ -1,11 +1,6 @@
 var express = require('express')
 var router = express.Router()
 
-const { Pool } = require('pg')
-const db = new Pool({
-    database: 'gamenight'
-})
-
 const Players = require('../models/player')
 
 router.get('/api/lobby', (req, res) => {
