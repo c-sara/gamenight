@@ -1,71 +1,43 @@
+<link rel="stylesheet" href="index.css">
 <% layout('layout') -%>
 
-<style>
-body {
-    background-color: lightgrey;
-    text-align: center;
-}
-
-
-.gridwrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-}
-
-
-.create {
-    border: 1px solid black;
-}
-
-.join {
-    border: 1px solid black;
-}
-
-.settings {
-    border: 1px solid black;
-    text-align: center;
-}
-
-</style>
-
-    <div class="bodywrapper">
-        <div class="gridwrap">
-            <div class="create">
+    <div class="index-bodywrapper">
+        <div class="index-gridwrap">
+            <div class="index-create">
                 <h2>Create Game</h2>
                 <form method="get" action="/create-game">
-                    <div class="input-label-group">
+                    <div class="index-input-label-group">
                         <label for="">Game Name:</label>
                         <input name="gameName" type="text"> 
                     </div>
-                    <div class="input-label-group">
-                        <label for="">Host name:</label>
+                    <div class="index-input-label-group">
+                        <label for="">Host name</label>
                         <input name="displayName" type="text"> 
                     </div>
-                    <button>Create Game</button>
+                    <button class="index-dark-btn">Create Game</button>
                 </form>
             </div>
 
 
         <!-- quick fix add in join specific game off code before asking for display name -->
 
-            <div class="join">
-                <h2>quick fix for adding player to table</h2>
+            <div class="index-join">
+                <h2>Join Game</h2>
                 <form method="get" action="/join-game">
-                    <div class="input-label-group">
+                    <div class="index-input-label-group">
                         <label for="">Display Name:</label>
                         <input name="displayName" type="text">
                     </div>
-                    <div class="input-label-group">
+                    <div class="index-input-label-group">
                         <label for="">Game Name:</label>
                         <input name="gameName" type="text">
                     </div>
-                    <button>Join Game</button>
+                    <button class="index-light-btn">Join Game</button>
                 </form>
             </div>
 
 
-            <div class="settings">
+            <div class="index-settings">
                 <h2>Settings</h2>
             </div>
         </div>

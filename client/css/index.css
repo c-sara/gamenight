@@ -1,0 +1,54 @@
+/* INDEX.EJS CSS*/
+
+body {
+    background-color: #FCAF58;
+    text-align: center;
+}
+
+
+.index-gridwrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+
+.index-create {
+    border: 1px solid black;
+}
+
+.index-join {
+    border: 1px solid black;
+}
+
+.index-settings {
+    border: 1px solid black;
+    text-align: center;
+}
+
+.index-bodywrapper {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.index-dark-btn {
+    background-color: #087E8B;
+    color: white;
+    font-weight: 600;
+    letter-spacing: .5px;
+    padding: 0.5rem;
+    border: 1px solid #320E3B;
+    border-radius: 2px;
+    margin: 0 40%;
+}
+
+.index-light-btn {
+    background-color: #320E3B;
+    color: white;
+    font-weight: 600;
+    letter-spacing: .5px;
+    padding: 0.5rem;
+    border: 1px solid #087E8B;
+    border-radius: 2px;
+    margin: 0 40%;
+}
