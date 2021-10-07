@@ -1,0 +1,40 @@
+<% layout('layout') -%>
+
+<!-- We will need the following:
+- Database for where scores are being kept
+  - Models > players will be used 
+  - We need the game_id - NEEDS TO BE PASSED THROUGH VIA LAST PAGE (Talk to Chris)
+- Organise the players results by score to determine first, second, third, etc
+  - forEach loop required to display it all
+- Button required to take you back to the home page
+ -->
+
+<div class="results-wrapper">
+  <form action="/">
+    <h1 class="results-title">Winners</h1>
+    <div class="winner-wrapper"> 
+      <% winners.forEach(winner => { %>
+        <span class="results-display-name"><%= winner.display_name %></span> 
+        <span class="results-total">score: <%=winner.score %></span>
+        <span class="results-winner">WINNER</span>
+      <% }) %>
+    </div>
+
+    <h1 class="results-title">Losers</h2>
+    <div class="loser-wrapper"> 
+      <% losers.forEach(loser => { %>
+        <span class="results-display-name"><%= loser.display_name %></span> 
+        <span class="results-total">score: <%=loser.score %></span>
+        <span class="results-loser">LOSER</span>
+      <% }) %>
+    </div>
+    
+    <div class="results-end-game-btn">
+      <button>End game</button>
+    </div>
+  </form>
+</div>
+
+
+<script src="js/results.js"></script>
+

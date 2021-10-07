@@ -63,3 +63,26 @@ body {
     border: 1px solid #087E8B;
     border-radius: 2px;
 }
+
+/* Styling results page below */
+
+.winner-wrapper, .loser-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    text-align: center;
+    margin: 10px auto;
+    width: 50%;
+    border: 1px solid red;
+    
+}
+
+.winner-wrapper span, .loser-wrapper span {
+    padding: 10px 0;
+    border: 1px solid black;
+}
+
+.results-end-game-btn, .results-title {
+    margin: 0 auto;
+    text-align: center;
+}
+
