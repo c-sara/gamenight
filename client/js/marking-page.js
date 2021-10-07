@@ -1,6 +1,5 @@
 let answerDivs = document.querySelectorAll('.marking-page-individual-answer-div')
 
-
 //add the polling function to grab up to date scores 
 
 
@@ -12,44 +11,32 @@ function handleAddPoint(e) {
     //when clicked btn state goes to true
     //if btn state is false and the btn is pressed +1 in player table
     //if btn state is true and the btn is pressed -1 in player table
+
+    
     
     let clicked = e.target
     if (clicked.classList.contains('marking-page-answer-btn')) {
         clicked.classList.toggle('clicked')
         if (clicked.classList.contains('clicked')){
+            //session id appears to be fucked atm ask sarah leah where its being set (if it is)
             addPointInPlayerTable(1, req.session.user_id)
+        } else {
+            addPointInPlayerTable(-1, req.session.user_id)
         }
     }
+}
 
 
+function renderPlayersScores() {
+    //this populates each players score span according to their player_id. By asking the servers for player score table
 
     
-    addPointInPlayerTable(value, player_id)
 
-
-
-
-
-
-
-
-    // let parentDiv = clicked.closest('div')
-    
-    // // this is the spread operator
-    // // it makes this nodeList into an array
-    // let score = [...parentDiv.children]
-    //     .filter(elem => elem.classList.contains('total-score'))[0]
-
-
-    // let clickedBtns = parentDiv.querySelectorAll('.clicked')
-    
-    // score.textContent = clickedBtns.length
-
-    //toggles a clicked
-    //sends an update to player table in their scores (+1 if its toggled - 1 if its not)
-    //everyone is polling the server 2 seconds to render up to date scores
 
 }
+
+
+setInterval(renderPlayersScores, 1000)
 
 answerDivs.forEach(answerDiv => {
     answerDiv.addEventListener('click', handleAddPoint)
