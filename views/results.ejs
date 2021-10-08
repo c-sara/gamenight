@@ -10,42 +10,42 @@
  -->
 <div class="gap"></div>
 <div class="results-wrapper">
-  <form action="/">
+  <form action="/end-game?gameId=<%= gameId %>&_method=DELETE" method="POST">
 
-      <% if(winners.length === 1) { %>
-        <h1 class="results-title">Winner</h1>
-      <% } else { %>
-        <h1 class="results-title">Winners</h1>
-      <% } %>
+    <% if(winners.length === 1) { %>
+      <h1 class="results-title">Winner</h1>
+    <% } else { %>
+      <h1 class="results-title">Winners</h1>
+    <% } %>
+    <span class="results-winner">WINNER MESSAGE</span>
 
     <div class="winner-wrapper"> 
       <% winners.forEach(winner => { %>
         <span class="results-display-name"><%= winner.display_name %></span> 
         <span class="results-total">score: <%=winner.score %></span>
-        <span class="results-winner">WINNER MESSAGE</span>
       <% }) %>
     </div>
 
-      <% if(losers.length === 1) { %>
-        <h1 class="results-title">Loser</h2>
-      <% } else { %>
-        <h1 class="results-title">Losers</h2>
-      <% } %>
+    <% if(losers.length === 1) { %>
+      <h1 class="results-title">Loser</h2>
+    <% } else { %>
+      <h1 class="results-title">Losers</h2>
+    <% } %>
+    <span class="results-loser">LOSER MESSAGE</span>
 
     <div class="loser-wrapper"> 
       <% losers.forEach(loser => { %>
         <span class="results-display-name"><%= loser.display_name %></span> 
         <span class="results-total">score: <%=loser.score %></span>
-        <span class="results-loser">LOSER MESSAGE</span>
       <% }) %>
     </div>
     
     <div class="results-end-game-btn">
-      <button>End game</button>
+      <button class="dark-btn" data-game-id="<%= gameId %>">End game</button>
     </div>
   </form>
 </div>
 
-
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="js/result.js"></script>
 

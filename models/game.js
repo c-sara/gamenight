@@ -26,10 +26,16 @@ function getGameById(gameId) {
   return db.query(sql, [gameId])
 }
 
+function deleteGameById(gameId) {
+  let sql = "DELETE FROM games WHERE game_id = $1;"
+  return db.query(sql, [gameId])
+}
+
 module.exports = {
   all,
   categoriesByGame,
   create,
   getGameByName,
-  getGameById
+  getGameById,
+  deleteGameById
 }

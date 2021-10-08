@@ -1,5 +1,6 @@
 const express = require('express')
 const engine = require('ejs-mate')
+const methodOverride = require('method-override')
 const app = express()
 const port = process.env.PORT || 8080
 
@@ -19,6 +20,7 @@ let session = require('express-session')
 
 
 app.use(express.static('client'))
+app.use(methodOverride('_method'))
 app.engine('ejs', engine)
 app.set('view engine', 'ejs')
 

@@ -1,4 +1,5 @@
 var express = require('express')
+const db = require('../db/db')
 var router = express.Router()
 
 const Game = require('../models/game')
@@ -65,6 +66,19 @@ router.get('/api/games', (req, res) => {
         .catch(err => {
             res.json({message: err.message})
         })
+
+})
+
+//delete
+router.delete('/end-game', (req, res) => {
+    let gameId = req.query.gameId
+    
+    Game.deleteGameById(gameId)
+    Player.deletePlayersByGameId(gameId)
+    db.query('DELETE FROM answers where game_id = $1;', [gameId])
+       
+    res.redirect('/')
+           
 })
 
 module.exports = router
