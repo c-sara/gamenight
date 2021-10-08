@@ -6,6 +6,8 @@ const Game = require('../models/game')
 const Player = require('../models/player')
 const Category = require('../models/category')
 const Answer = require('../models/answers')
+const Results = require('../models/results')
+const MarkingPage = require('../models/marking-page')
 
 // checks if game exists returns t/f
 router.get('/api/games/:gameName', (req, res) => {

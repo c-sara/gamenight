@@ -1,15 +1,20 @@
 var express = require('express')
 var router = express.Router()
 
-const Results = require('../models/results.js')
-const Players = require('../models/player.js')
+const Game = require('../models/game')
+const Player = require('../models/player')
+const Category = require('../models/category')
+const Answer = require('../models/answers')
+const Results = require('../models/results')
+const MarkingPage = require('../models/marking-page')
+
 
 // returns winners losers and gameId
 router.get('/results', (req, res) => {
 
   let gameId = req.session.game_id
 
-  Players.getPlayerById(req.session.user_id)
+  Player.getPlayerById(req.session.user_id)
     .then(dbRes => {
       // var gameId = 7 // for testing
       return Results.winners(gameId)

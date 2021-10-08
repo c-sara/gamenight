@@ -2,7 +2,11 @@ var express = require('express')
 const db = require('../db/db')
 var router = express.Router()
 
+const Game = require('../models/game')
 const Player = require('../models/player')
+const Category = require('../models/category')
+const Answer = require('../models/answers')
+const Results = require('../models/results')
 const MarkingPage = require('../models/marking-page')
 
 // gets all players

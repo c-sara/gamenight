@@ -1,7 +1,12 @@
 var express = require('express')
 var router = express.Router()
 
-const Category = require('../models/category.js')
+const Game = require('../models/game')
+const Player = require('../models/player')
+const Category = require('../models/category')
+const Answer = require('../models/answers')
+const Results = require('../models/results')
+const MarkingPage = require('../models/marking-page')
 
 // gets all categories
 router.get('/categories', (req, res) => {

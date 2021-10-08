@@ -1,19 +1,23 @@
 var express = require('express')
 var router = express.Router()
 
-const Players = require('../models/player')
+const Game = require('../models/game')
+const Player = require('../models/player')
+const Category = require('../models/category')
+const Answer = require('../models/answers')
+const Results = require('../models/results')
+const MarkingPage = require('../models/marking-page')
 
 router.get('/api/lobby', (req, res) => {
 
     let playerId = req.session.user_id
+    let gameId = req.session.game_id
 
-    Players.updateTimeStamp(playerId)
+    Player.updateTimeStamp(playerId)
         .then(dbRes => {
-            let gameId = dbRes.rows[0].game_id
-            return Players.getAllActive(gameId)
+            return Player.getAllActive(gameId)
         })
         .then(dbRes => {
-            let gameId = dbRes.rows[0].game_id
             res.json({ players: dbRes.rows, gameId })
         })
         .catch(err => {

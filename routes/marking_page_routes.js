@@ -2,10 +2,12 @@ const express = require('express')
 
 var router = express.Router()
 
-const Category = require('../models/category.js')
-const Game = require('../models/game.js')
-const Player = require('../models/player.js')
-const Answer = require('../models/answers.js')
+const Game = require('../models/game')
+const Player = require('../models/player')
+const Category = require('../models/category')
+const Answer = require('../models/answers')
+const Results = require('../models/results')
+const MarkingPage = require('../models/marking-page')
 
 const db = require('../db/db')
 let session = require('express-session')
