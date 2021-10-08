@@ -13,6 +13,7 @@ img {
 }
 
 a, button {
+    text-decoration: none;
     font-style: inherit;
     font-family: inherit;
     text-transform: inherit;

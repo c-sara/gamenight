@@ -39,7 +39,6 @@ function handleCheckGameNameValidity(e) {
     let possGameName = e.target.value
     axios.get(`/api/games/${possGameName}`)
         .then(res => {
-            console.log(res.data)
             let gameAlreadyExists = res.data.exists
             if (gameAlreadyExists) {
                 markInputInvalid(createGameNameInp)

@@ -11,9 +11,9 @@ function categoriesByGame() {
   return db.query(sql)
 }
 
-function create(gameName) {
-  let sql = "INSERT INTO games (game_name) values ($1) returning *;"
-  return db.query(sql, [gameName])
+function create(gameName, numRounds, catIds) {
+  let sql = "INSERT INTO games (game_name, rounds, categories) values ($1, $2, $3) returning *;"
+  return db.query(sql, [gameName, numRounds, catIds])
 }
 
 function getGameByName(gameName) {
