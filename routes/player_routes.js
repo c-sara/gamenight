@@ -1,4 +1,5 @@
 var express = require('express')
+const db = require('../db/db')
 var router = express.Router()
 
 const Player = require('../models/player')
@@ -23,15 +24,22 @@ router.put('/api/marking-page', (req, res) => {
 
     var instruction = req.body.scoreChange
 
+    var userId = req.body.btnOwner
+
     if (instruction === 'increase') {
-        
+        var sql = `UPDATE players SET score = score + 1 WHERE player_id = $1;`
+    } else {
+        var sql = `UPDATE players SET score = score - 1 WHERE player_id = $1;`
 
     }
 
 
 
+    db.query(sql, [userId])
+        .then( () => {
+            res.json( {} )
+        })
 
-    // res.json({ userId: req.session.user_id} )
 })
 
 // router.delete('/api/marking-page', (req, res) => {
