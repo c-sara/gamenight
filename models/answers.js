@@ -15,8 +15,15 @@ function create(gameId, userId, categoriesAndAnswers) {
     return db.query(sql, [gameId, userId, categoriesAndAnswers])
 }
 
+function deleteAnswersByGameId(gameId) {
+    let sql = 'DELETE FROM answers where game_id = $1;'
+    return db.query(sql, [gameId])
+}
+
+
 module.exports = {
     all,
     singleGameAllWithPlayerNames,
-    create
+    create,
+    deleteAnswersByGameId
 }

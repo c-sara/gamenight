@@ -21,7 +21,7 @@ router.get('/api/answers', (req, res) => {
 })
 
 router.get('/api/answers/playerNames', (req, res) => {
-    Answer.allWithPlayerNames()
+    Answer.singleGameAllWithPlayerNames()
         .then(dbRes => {
             res.json({ answers: dbRes.rows })
         })

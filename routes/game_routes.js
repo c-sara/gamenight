@@ -5,12 +5,14 @@ var router = express.Router()
 const Game = require('../models/game')
 const Player = require('../models/player')
 const Category = require('../models/category')
+const Answer = require('../models/answers')
 
 router.post('/create-game', (req, res) => {
     
     let gameName = req.body.gameName
     let displayName = req.body.displayName
     let numRounds = req.body.numRounds
+
     Category.get10RandCategories()
         .then(res => {
             let catIds = Category.convertCategoriesToArr(res.rows)
@@ -18,6 +20,7 @@ router.post('/create-game', (req, res) => {
         })
         .then(dbRes => {
             let gameId = dbRes.rows[0].game_id
+            req.session.game_id = gameId
             return Player.create(displayName, gameId, true)
         })
         .then(dbRes => {
@@ -37,6 +40,7 @@ router.post('/join-game', (req, res) => {
     Game.getGameByName(gameName)
         .then(dbRes => {
             let gameId = dbRes.rows[0].game_id
+            req.session.game_id = gameId
             return Player.create(displayName, gameId)
         })
         .then(dbRes => {
@@ -70,7 +74,6 @@ router.get('/api/games', (req, res) => {
         .catch(err => {
             res.json({message: err.message})
         })
-
 })
 
 //delete
@@ -79,10 +82,13 @@ router.delete('/end-game', (req, res) => {
     
     Game.deleteGameById(gameId)
     Player.deletePlayersByGameId(gameId)
-    db.query('DELETE FROM answers where game_id = $1;', [gameId])
-       
-    res.redirect('/')
-           
+    Answer.deleteAnswersByGameId(gameId)
+        .then(dbRes => {
+            res.redirect('/')
+        })
+        .catch(err => {
+            res.json({message: err.message})
+        })    
 })
 
 module.exports = router

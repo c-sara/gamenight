@@ -25,8 +25,8 @@ router.get('/game/:game_id', (req, res) => {
 })
 
 // gets game_id by player
-router.get('/api/players/:player_id', (req, res) => {
-    let playerId = req.params.player_id
+router.get('/api/players/', (req, res) => {
+    let playerId = req.session.user_id
 
     // get game id from player id 
     Player.getGameIdByPlayerId(playerId)
@@ -81,6 +81,7 @@ router.post('/marking-page/:game_id', (req, res) => {
         })
         .catch(err => {
             console.log(err)
+            res.json({ err: err.message })
         })
 })
 

@@ -3,7 +3,7 @@ const db = require('../db/db')
 var router = express.Router()
 
 const Player = require('../models/player')
-
+const MarkingPage = require('../models/marking-page')
 
 router.get('/api/players', (req, res) => {
     Player.getAll()
@@ -15,37 +15,35 @@ router.get('/api/players', (req, res) => {
         })
 })
 
-
 //update to filter by game_id
 router.get('/api/marking-page/:game_id', (req, res) => {
     //send the client all the player score info stored in players table
     var gameId = req.params.game_id
 
-    var sql = 'SELECT players.player_id, score FROM players INNER JOIN answers ON players.player_id = answers.player_id WHERE players.game_id = $1;'
-
-    db.query(sql, [gameId])
+    MarkingPage.getScores(gameId)
         .then(dbRes => {
             res.json(dbRes.rows)
         })
+        .catch(err => {
+            console.log(err)
+            res.json({ err: err.message })
+        })
 })
-
 
 //update to filter by game_id
 router.put('/api/marking-page', (req, res) => {
     var instruction = req.body.scoreChange
     var userId = req.body.btnOwner
 
-    if (instruction === 'increase') {
-        var sql = `UPDATE players SET score = score + 1 WHERE player_id = $1;`
-    } else {
-        var sql = `UPDATE players SET score = score - 1 WHERE player_id = $1;`
-    }
-    db.query(sql, [userId])
+    MarkingPage.incrementScore(userId, instruction)
         .then( () => {
             res.json( {} )
         })
+        .catch(err => {
+            console.log(err)
+            res.json({ err: err.message })
+        })
 })
-
 
 router.patch('/api/players/:id', (req, res) => {
     let playerId = req.params.id
