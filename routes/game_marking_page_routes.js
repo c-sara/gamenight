@@ -38,23 +38,22 @@ router.get('/api/games', (req, res) => {
         })
 })
 
+
+//filter by game_id
 router.post('/marking-page', (req, res) => {
     var categoriesAndAnswers = JSON.stringify(req.body)
-    //later add game id and filter by it
-
-    //filter by players 
     db.query(`INSERT INTO answers (player_id, player_ans) VALUES ($1, $2);`, [req.session.user_id, categoriesAndAnswers])
         .then(dbRes => {
-            return db.query(`SELECT * FROM answers;`)
+            return db.query(`SELECT players.game_id, answers.player_id, answers.player_ans, players.display_name FROM answers INNER JOIN players ON answers.player_id = players.player_id;`)
         })
         .then(dbRes => {
             var answerData = dbRes.rows
 
-            console.log(answerData);
+
             var cat_IDsInGame = Object.keys(answerData[0].player_ans)
             getCategoriesByCat_Id(cat_IDsInGame)
                 .then(dbRes => {
-                    // console.log(answerData);
+                    console.log(answerData);
                     var categoryNamesInGame = dbRes.rows
                     res.render('marking-page', { answerData, categoryNamesInGame })
                 })

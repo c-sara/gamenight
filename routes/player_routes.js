@@ -24,7 +24,6 @@ router.get('/api/marking-page', (req, res) => {
 
     db.query(sql)
         .then(dbRes => {
-            console.log(dbRes.rows);
             res.json(dbRes.rows)
         })
 })
