@@ -32,3 +32,18 @@ INSERT INTO players (display_name, game_id, score) values ('pear', 7, 4);
 INSERT INTO players (display_name, game_id, score) values ('kiwi', 7, 3);
 INSERT INTO players (display_name, game_id, score) values ('apple', 7, 3);
 INSERT INTO players (display_name, game_id, score) values ('orange', 7, 10);
+
+-- Testing
+INSERT INTO answers (game_id, player_id) values (1, 1);
+INSERT INTO answers (game_id, player_id) values (1, 2);
+INSERT INTO answers (game_id, player_id) values (1, 3);
+INSERT INTO answers (game_id, player_id) values (2, 1);
+INSERT INTO answers (game_id, player_id) values (2, 2);
+INSERT INTO answers (game_id, player_id) values (2, 3);
+INSERT INTO answers (game_id, player_id) values (3, 1);
+INSERT INTO answers (game_id, player_id) values (3, 2);
+INSERT INTO answers (game_id, player_id) values (3, 3);
+
+INSERT INTO answers (game_id, player_id) values (7, 1);
+INSERT INTO answers (game_id, player_id) values (7, 2);
+INSERT INTO answers (game_id, player_id) values (7, 3);

@@ -10,8 +10,7 @@ router.get('/results', (req, res) => {
     .then(dbRes => {
       // var gameId = dbRes.rows[0].game_id
       var gameId = 7 // for testing
-      console.log(gameId)
-      
+
       Results.winners(gameId)
         .then(winnerRes => {
           var winners = winnerRes.rows

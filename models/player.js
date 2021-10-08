@@ -35,12 +35,18 @@ function getAll() {
     return db.query(sql)
 }
 
+function deletePlayersByGameId(gameId) {
+    let sql = 'DELETE FROM players WHERE game_id = $1;'
+    return db.query(sql, [gameId])
+}
+
 module.exports = {
     create,
     getAllActive,
     updateTimeStamp,
     getPlayerById,
     updatePlayerReady,
-    getAll
+    getAll,
+    deletePlayersByGameId
 }
 
