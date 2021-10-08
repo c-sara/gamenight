@@ -19,7 +19,6 @@ router.get('/game', (req, res) => {
     Category.all()
         .then(dbRes => {
             var categoryData = dbRes.rows
-
             res.render('game', { user_id: req.session.user_id, categoryData })
         })
         .catch(err => {
@@ -40,19 +39,10 @@ router.get('/api/games', (req, res) => {
 })
 
 router.post('/marking-page', (req, res) => {
-    //this is req.body = { '1': 'jhjgf', '2': 'sddg', '3': 'hgf', '4': 'waq', '5': 'bnv' }
-
-
-
-    //insert the req query as a new record in the results table
-
     var categoriesAndAnswers = JSON.stringify(req.body)
-
      //later add game id and filter by it
 
      //filter by players 
-
-
     db.query(`INSERT INTO answers (player_id, player_ans) VALUES ($1, $2);`, [req.session.user_id, categoriesAndAnswers])
         .then(dbRes => {
             return db.query(`SELECT * FROM answers;`)
@@ -68,6 +58,9 @@ router.post('/marking-page', (req, res) => {
                     var categoryNamesInGame = dbRes.rows
                     res.render('marking-page', { answerData, categoryNamesInGame })
                 })
+        })
+        .catch(err => {
+            console.log(err)
         })
 })
 
