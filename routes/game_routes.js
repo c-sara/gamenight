@@ -4,14 +4,18 @@ var router = express.Router()
 
 const Game = require('../models/game')
 const Player = require('../models/player')
+const Category = require('../models/category')
 
 router.post('/create-game', (req, res) => {
-
-    console.log(req.body)
-    var gameName = req.body.gameName
-    var displayName = req.body.displayName
-
-    Game.create(gameName)
+    
+    let gameName = req.body.gameName
+    let displayName = req.body.displayName
+    let numRounds = req.body.numRounds
+    Category.get10RandCategories()
+        .then(res => {
+            let catIds = Category.convertCategoriesToArr(res.rows)
+            return Game.create(gameName, numRounds, catIds)
+        })
         .then(dbRes => {
             let gameId = dbRes.rows[0].game_id
             return Player.create(displayName, gameId, true)
