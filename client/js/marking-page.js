@@ -1,4 +1,9 @@
 let answerDivs = document.querySelectorAll('.marking-page-individual-answer-div')
+let dataSetGameId = document.querySelector('.marking-page-gameId-data')
+// console.log(dataSetGameId);
+// console.log(dataSetGameId.textContent)
+let dSetGameId = dataSetGameId.dataset.gameid
+console.log(dSetGameId)
 
 
 function handleAddPoint(e) {
@@ -17,13 +22,7 @@ function handleAddPoint(e) {
 
 
 function renderPlayersScores() {
-    //this populates each players score span according to their player_id. By asking the servers for player score table
-    //call to the api asking what the latest scores are
-    //change the textContent of the appropriate btns
-
-    
-
-    axios.get('api/marking-page')
+       axios.get(`/api/marking-page/${dSetGameId}`)
         .then(scores => {
             var scoreArray = scores.data
 
@@ -31,24 +30,7 @@ function renderPlayersScores() {
                 var playerScoreSpan = document.querySelector(`.score${playerScore.player_id}`)
                 playerScoreSpan.textContent = playerScore.score
             })
-
-
-
-            //scores.data is an array of objects
-
-            //for each object in array use DOM to grab the right span
-
-            //update the buttons
         })
-
-        // 0: {player_id: 1, score: 0}
-        // 1: {player_id: 3, score: 0}
-        // 2: {player_id: 4, score: 0}
-        // 3: {player_id: 2, score: 4}
-        // 4: {player_id: 5, score: 5}
-        // 5: {player_id: 6, score: 0}
-        
-
 }
 
 setInterval(renderPlayersScores, 1000)
