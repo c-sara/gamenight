@@ -1,7 +1,7 @@
 const db = require('../db/db')
 
 function all() {
-    let sql = "SELECT * FROM anwers;"
+    let sql = "SELECT * FROM answers;"
     return db.query(sql)
 }
 

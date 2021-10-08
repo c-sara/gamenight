@@ -3,6 +3,7 @@ var router = express.Router()
 
 const Category = require('../models/category.js')
 
+// gets all categories
 router.get('/categories', (req, res) => {
   Category.all()
       .then(dbRes => {
@@ -14,8 +15,7 @@ router.get('/categories', (req, res) => {
       })
 })
 
-// new category sent through body
-// I have no preference on this just did it this way :)
+// adds new category
 router.post('/categories', (req, res) => {
   let category = req.body.category
   Category.create(category)

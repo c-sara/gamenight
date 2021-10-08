@@ -26,4 +26,51 @@ router.get('/lobby', (req, res) => {
     res.render('lobby')
 })
 
+router.post('/create-game', (req, res) => {
+    
+    let gameName = req.body.gameName
+    let displayName = req.body.displayName
+    let numRounds = req.body.numRounds
+
+    Category.get10RandCategories()
+        .then(res => {
+            let catIds = Category.convertCategoriesToArr(res.rows)
+            return Game.create(gameName, numRounds, catIds)
+        })
+        .then(dbRes => {
+            let gameId = dbRes.rows[0].game_id
+            req.session.game_id = gameId
+            return Player.create(displayName, gameId, true)
+        })
+        .then(dbRes => {
+            req.session.user_id = dbRes.rows[0].player_id
+            res.redirect('/lobby')
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
+})
+
+router.post('/join-game', (req, res) => {
+
+    let displayName = req.body.displayName
+    let gameName = req.body.gameName
+
+    Game.getGameByName(gameName)
+        .then(dbRes => {
+            let gameId = dbRes.rows[0].game_id
+            req.session.game_id = gameId
+            return Player.create(displayName, gameId)
+        })
+        .then(dbRes => {
+            req.session.user_id = dbRes.rows[0].player_id
+            res.redirect('/lobby')
+        })
+        .catch(err => {
+            console.log(err)
+            res.json({err: err.message})
+        })
+
+})
+
 module.exports = router

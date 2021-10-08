@@ -4,6 +4,7 @@ var router = express.Router()
 const Results = require('../models/results.js')
 const Players = require('../models/player.js')
 
+// returns winners losers and gameId
 router.get('/results', (req, res) => {
 
   let gameId = req.session.game_id
@@ -26,5 +27,6 @@ router.get('/results', (req, res) => {
       console.log(err)
       res.json({ err: err.message })
     })
-  })
+})
+
 module.exports = router
