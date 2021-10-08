@@ -20,7 +20,8 @@ router.get('/api/players', (req, res) => {
 router.get('/api/marking-page', (req, res) => {
     //send the client all the player score info stored in players table
 
-    var sql = `SELECT player_id, score FROM players;`
+    var sql = 'SELECT players.player_id, score FROM players INNER JOIN answers ON players.player_id = answers.player_id;'
+
     db.query(sql)
         .then(dbRes => {
             console.log(dbRes.rows);

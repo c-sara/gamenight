@@ -26,7 +26,7 @@ function renderPlayersScores() {
             var scoreArray = scores.data
 
             scoreArray.forEach(playerScore => {
-                var playerScoreSpan = document.querySelector(`.${playerScore.player_id}_score`)
+                var playerScoreSpan = document.querySelector(`.score${playerScore.player_id}`)
                 playerScoreSpan.textContent = playerScore.score
             })
 
