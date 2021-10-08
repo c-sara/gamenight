@@ -4,9 +4,12 @@ var router = express.Router()
 const Game = require('../models/game')
 const Player = require('../models/player')
 
-router.get('/create-game', (req, res) => {
-    var gameName = req.query.gameName
-    var displayName = req.query.displayName
+router.post('/create-game', (req, res) => {
+
+    console.log(req.body)
+    var gameName = req.body.gameName
+    var displayName = req.body.displayName
+
     Game.create(gameName)
         .then(dbRes => {
             let gameId = dbRes.rows[0].game_id
@@ -21,10 +24,10 @@ router.get('/create-game', (req, res) => {
         })
 })
 
-router.get('/join-game', (req, res) => {
+router.post('/join-game', (req, res) => {
 
-    let displayName = req.query.displayName
-    let gameName = req.query.gameName
+    let displayName = req.body.displayName
+    let gameName = req.body.gameName
 
     Game.getGameByName(gameName)
         .then(dbRes => {
@@ -36,10 +39,32 @@ router.get('/join-game', (req, res) => {
             res.redirect('/lobby')
         })
         .catch(err => {
-            console.log('oi')
-            console.log(err.message)
+            console.log(err)
+            res.json({err: err.message})
         })
 
+})
+
+router.get('/api/games/:gameName', (req, res) => {
+    let gameName = req.params.gameName
+    Game.getGameByName(gameName)
+        .then(dbRes => {
+            let exists = dbRes.rows.length > 0 ? true : false 
+            res.json({ exists: exists })
+        })
+        .catch(err => {
+            res.json({err: err.message})
+        })
+}) 
+
+router.get('/api/games', (req, res) => {
+    Game.all()
+        .then(dbRes => {
+            res.json({games: dbRes.rows})
+        })
+        .catch(err => {
+            res.json({message: err.message})
+        })
 })
 
 module.exports = router
