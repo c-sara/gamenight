@@ -14,9 +14,9 @@ axios.get('/api/lobby')
 
 let ready = []
 
-function createStartAnc() {
+function createStartAnc(gameId) {
     let startAnc = document.createElement("a")
-    startAnc.href = "/game"
+    startAnc.href = `/game/${gameId}`
     startAnc.textContent = "Play"
     startAnc.classList.add("light-btn")
     startAnc.classList.add("start-anc")
@@ -36,7 +36,7 @@ function renderPlayerList() {
             let checkForStartAnc = document.querySelector('.start-anc')
             if (ready.every(ready => ready === false) !== true && !checkForStartAnc) {
                 readyBtn.remove()
-                createStartAnc()
+                createStartAnc(players[0].game_id)
             }
 
             ready = []
