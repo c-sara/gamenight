@@ -40,11 +40,19 @@ router.get('/api/games', (req, res) => {
 
 
 //filter by game_id
-router.post('/marking-page', (req, res) => {
+router.post('/marking-page/:game_id', (req, res) => {
     var categoriesAndAnswers = JSON.stringify(req.body)
+    var gameId = req.query
+    console.log(gameId);
+
+
     db.query(`INSERT INTO answers (player_id, player_ans) VALUES ($1, $2);`, [req.session.user_id, categoriesAndAnswers])
         .then(dbRes => {
-            return db.query(`SELECT players.game_id, answers.player_id, answers.player_ans, players.display_name FROM answers INNER JOIN players ON answers.player_id = players.player_id;`)
+            return db.query('SELECT players.game_id, answers.player_id, answers.player_ans, players.display_name FROM answers INNER JOIN players ON answers.player_id = players.player_id WHERE game_id = $1;', [gameId])
+            //where game id matches the params
+
+            
+
         })
         .then(dbRes => {
             var answerData = dbRes.rows

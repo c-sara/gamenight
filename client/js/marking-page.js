@@ -21,6 +21,8 @@ function renderPlayersScores() {
     //call to the api asking what the latest scores are
     //change the textContent of the appropriate btns
 
+    
+
     axios.get('api/marking-page')
         .then(scores => {
             var scoreArray = scores.data
