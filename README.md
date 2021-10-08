@@ -4,9 +4,9 @@
 ### How to play
 Go to the URL to see our deployed project [https://limitless-tundra-59541.herokuapp.com/].
 
-To play you will need someone to be the host - they will create a game and be given a unique code. With that code, it will be shared amongst the players who will enter the code before they are able to join the game.
+To play you will need someone to be the host - they will create a game by typing in a game name, host name and selecting the number of rounds. The game name will be shared amongst the players who will enter it before they are able to join the same game as the host.
 
-The players (including the host) will be given a random letter and categories each round. Each person is required to fill out each category list with an answer that begins with the correct letter within the time limit.
+The players (including the host) will be given the a random letter and categories each round. Each person is required to fill out each category list with an answer that begins with the correct letter within the time limit.
 
 For example, if the letter is "C" and the category is vegetable, words such as "cauliflower" and "carrot" are allowed. "Pumpkin" is not allowed, as it is not the right letter. "Cat" would also not be allowed as it is the wrong catergory.
 
@@ -21,6 +21,8 @@ The scores are calculated based on the following:
   * Is unique
   * Begins with the correct letter
   * Is in the correct category
+
+The aim of the game is to get the highest amount of points!
 
 ## Technologies Used
 Our project was created using the following:
