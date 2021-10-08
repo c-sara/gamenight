@@ -56,7 +56,7 @@ The [diagram of our database schema](https://dbdiagram.io/d/615ecb43940c4c4eec89
 ## Future Improvements
 
 ## Team photo
-![team_photo](public/images/teamphoto.png "Gang gang")
+![team_photo](public/images/teampic.png "Gang gang")
 
 
 
