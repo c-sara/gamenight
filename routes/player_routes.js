@@ -50,7 +50,7 @@ router.patch('/api/players/:id', (req, res) => {
     let playerId = req.params.id
     Player.updatePlayerReady(playerId)
         .then(dbRes => {
-            res.json({ player: "updated" })
+            res.json({ player: dbRes.rows[0] })
         })
         .catch(err => {
             res.json({ message: err.message})
