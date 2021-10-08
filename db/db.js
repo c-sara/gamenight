@@ -11,7 +11,6 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   db = new Pool({
     database: 'gamenight',
-    password: 'test'
   })
 }
 

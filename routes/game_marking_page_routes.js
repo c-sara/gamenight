@@ -10,7 +10,7 @@ const db = require('../db/db')
 let session = require('express-session')
 
 
-function getCategoriesByCat_Id(arrayOfIDs){
+function getCategoriesByCat_Id(arrayOfIDs) {
     return db.query(`SELECT * FROM categories WHERE cat_id IN (${arrayOfIDs.join(',')});`)
 }
 
@@ -40,9 +40,9 @@ router.get('/api/games', (req, res) => {
 
 router.post('/marking-page', (req, res) => {
     var categoriesAndAnswers = JSON.stringify(req.body)
-     //later add game id and filter by it
+    //later add game id and filter by it
 
-     //filter by players 
+    //filter by players 
     db.query(`INSERT INTO answers (player_id, player_ans) VALUES ($1, $2);`, [req.session.user_id, categoriesAndAnswers])
         .then(dbRes => {
             return db.query(`SELECT * FROM answers;`)
