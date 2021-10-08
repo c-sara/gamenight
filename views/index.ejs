@@ -7,41 +7,47 @@
             <div class="index-create">
                 <h2>Create Game</h2>
                 <div class="gap"></div>
-                <form method="get" action="/create-game">
-                    <div class="index-input-label-group">
-                        <label for="">Game Name:</label>
+
+                <form method="post" action="/create-game" class="create-game-form">
+
+                    <div class="index-input-label-group create-game-name-div">
+                        <label for="gameName">Game Name:</label>
                         <div></div>
-                        <input name="gameName" type="text"> 
+                        <input name="gameName" type="text" class="create-game-input-name"> 
                     </div>
+
                     <div class="index-input-label-group">
-                        <label for="">Host name</label>
+                        <label for="displayName">Host name</label>
                         <div></div>
                         <input name="displayName" type="text"> 
                     </div>
+
                     <div class="gap"></div>
-                    <button class="index-dark-btn">Create Game</button>
+
+                    <button class="index-dark-btn" disabled="true">Create Game</button>
+
                 </form>
+
             </div>
-
-
-        <!-- quick fix add in join specific game off code before asking for display name -->
 
             <div class="index-join">
                 <h2>Join Game</h2>
                 <div class="gap"></div>
-                <form method="get" action="/join-game">
+                <form method="post" action="/join-game">
+
+                    <div class="index-input-label-group join-game-div">
+                        <label for="">Game Name:</label>
+                        <div></div>
+                        <input name="gameName" type="text" class="join-game-input-name">
+                    </div>
                     <div class="index-input-label-group">
-                        <label for=""><h3>Display Name:</h3></label>
+                        <label for="displayName"><h3>Display Name:</h3></label>
                         <div></div>
                         <input name="displayName" type="text">
                     </div>
-                    <div class="index-input-label-group">
-                        <label for="">Game Name:</label>
-                        <div></div>
-                        <input name="gameName" type="text">
-                    </div>
                     <div class="gap"></div>
-                    <button class="index-light-btn">Join Game</button>
+                    <button class="index-light-btn" disabled="true">Join Game</button>
+                    
                 </form>
             </div>
         </div>
