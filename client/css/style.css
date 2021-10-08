@@ -22,7 +22,7 @@ body {
     background-image:url(https://i.imgur.com/Cy8pMWO.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: linear-gradient(#FCAF58, #ebf8e1, #3f87a6 ) fixed;
+    background-color: linear-gradient(#d8caba, #ebf8e1, #ffffff ) fixed;
     text-align: center;
 }
 
@@ -184,7 +184,6 @@ body {
         border-radius: 2px;
 
 }
-/* .lobby-play-btn:hover {background-color: #320e3bbf} */
 
 /* GAME CSS BELOW */
 
@@ -209,3 +208,13 @@ body {
     border-radius: 20px;
 }
 
+
+/* MARKING PAGE CSS */
+.marking-page-player-answers-wrapper {
+    width: 100%;
+}
+
+.marking-page-main {
+    width: 50%;
+    margin: 0 auto;
+}
