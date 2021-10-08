@@ -14,15 +14,15 @@ router.get('/results', (req, res) => {
       Results.winners(gameId)
         .then(winnerRes => {
           var winners = winnerRes.rows
-          
+
           Results.losers(gameId)
             .then(loserRes => {
               var losers = loserRes.rows
-    
+
               res.render('results', { gameId, winners, losers })
             })
         })
-      
+
     })
 
 
