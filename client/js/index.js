@@ -22,7 +22,6 @@ function createErrorP(message, parent) {
         errorP.classList.add('error-p')
         parent.appendChild(errorP)
     }
-    
 }
 
 function markInputValid(elem) {
@@ -54,7 +53,6 @@ function handleCheckGameNameValidity(e) {
 
 // JOIN GAME
 // check if game exists in db
-
 function handleGameCanBeJoined(e) {
     let gameToJoin = e.target.value
     axios.get(`/api/games/${gameToJoin}`)
