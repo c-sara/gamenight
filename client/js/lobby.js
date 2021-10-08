@@ -64,7 +64,7 @@ function handleGameStart(e) {
     axios.patch(`/api/players/${playerId}`)
         .then(res => {
             readyBtn.remove()
-            createStartAnc()
+            createStartAnc(res.data.player.game_id)
         })
 }
 
