@@ -6,18 +6,27 @@
 <div class="gap"></div>
 
 <div class="marking-page-main">
-  <div class="marking-page-categories-wrapper">
+  <%# categoryNamesInGame %>
+  
+  <table>
+    <% categoryNamesInGame.forEach(category => { %>
+      <th style="width: 10%"><%= category.category %></th>
+    <% }) %>
+  </table>
+  <!-- <div class="marking-page-categories-wrapper">
     <h4>
       Categories
     </h4>
-    <% categoryNamesInGame.forEach(category => { %>
+    <%# categoryNamesInGame.forEach(category => { %>
+      
         <p>
-          <label class="marking-page-category-label"><%= category.category %></label>
+          <label class="marking-page-category-label"><%# category.category %></label>
         </p>
-    <% }) %>
-  </div>
+    <%# }) %>
+  </div> -->
 
-    <% answerData.forEach(player => { %>
+  <%= console.log(answers) %>
+    <% answers.forEach(player => { %>
     
       <div class="marking-page-player-answer-wrapper">
         <h4 class="marking-page-gameId-data" data-gameId="<%= player.game_id %>"><%= player.display_name %></h4>

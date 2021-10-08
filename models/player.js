@@ -40,6 +40,12 @@ function deletePlayersByGameId(gameId) {
     return db.query(sql, [gameId])
 }
 
+// didn't know if this should go here or in players
+function getGameIdByPlayerId(playerId) {
+    let sql = "SELECT game_id FROM players WHERE player_id = $1;"
+    return db.query(sql, [playerId])
+}
+
 module.exports = {
     create,
     getAllActive,
@@ -47,6 +53,7 @@ module.exports = {
     getPlayerById,
     updatePlayerReady,
     getAll,
-    deletePlayersByGameId
+    deletePlayersByGameId,
+    getGameIdByPlayerId
 }
 

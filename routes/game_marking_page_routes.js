@@ -5,21 +5,16 @@ var router = express.Router()
 const Category = require('../models/category.js')
 const Game = require('../models/game.js')
 const Player = require('../models/player.js')
+const Answer = require('../models/answers.js')
 
 const db = require('../db/db')
 let session = require('express-session')
 
-
-function getCategoriesByCat_Id(arrayOfIDs) {
-    return db.query(`SELECT * FROM categories WHERE cat_id IN (${arrayOfIDs.join(',')});`)
-}
-
-
 router.get('/game/:game_id', (req, res) => {
     var gameId = req.params.game_id
-    db.query(`SELECT categories FROM games WHERE game_id = $1`, [gameId])
+    Category.getCategoriesByGameId(gameId)
         .then(dbRes => {
-            var categoryIdsArr = dbRes.rows[0].categories
+            var categoryIdsArr = dbRes.rows[0].categories.map(item => Number(item))
             var categoryIdsStr = categoryIdsArr.toString()
             return db.query(`SELECT * FROM categories WHERE cat_id IN (${categoryIdsStr});`) 
         })
@@ -28,6 +23,32 @@ router.get('/game/:game_id', (req, res) => {
             res.render('game', { user_id: req.session.user_id, categoryData, gameId })
         })
 })
+
+// gets game_id by player
+router.get('/api/players/:player_id', (req, res) => {
+    let playerId = req.params.player_id
+
+    // get game id from player id 
+    Player.getGameIdByPlayerId(playerId)
+        .then(dbRes => {
+            res.json({ gameId: dbRes.rows[0].game_id })
+        })
+        .catch(err => {
+            res.json({ err: err.message })
+        })
+
+})
+
+router.get('/api/games/names/:player_id'), (req, res) => {
+    Answer.singleGameAllWithPlayerNames(req.params.gameId)
+        .then(dbRes => {
+            res.json(dbRes.rows)
+        })
+        .catch(err => {
+            res.status(500)
+                .json({ err: err.message, line: err.line })
+        })
+}
 
 router.get('/api/games', (req, res) => {
     Game.all()
@@ -40,40 +61,27 @@ router.get('/api/games', (req, res) => {
         })
 })
 
-
-//filter by game_id
 router.post('/marking-page/:game_id', (req, res) => {
 
     var gameId = req.params.game_id
     var categoriesAndAnswers = JSON.stringify(req.body)
-    console.log(gameId);
 
-
-    db.query(`INSERT INTO answers (player_id, player_ans) VALUES ($1, $2);`, [req.session.user_id, categoriesAndAnswers])
+    Answer.create(gameId, req.session.user_id, categoriesAndAnswers)
         .then(dbRes => {
-            return db.query('SELECT players.game_id, answers.player_id, answers.player_ans, players.display_name FROM answers INNER JOIN players ON answers.player_id = players.player_id WHERE players.game_id = $1;', [gameId])
-            //where game id matches the params
-
-            
-
+            return Answer.singleGameAllWithPlayerNames(gameId)
         })
         .then(dbRes => {
-            var answerData = dbRes.rows
-
-
-            var cat_IDsInGame = Object.keys(answerData[0].player_ans)
-            getCategoriesByCat_Id(cat_IDsInGame)
+            var answers = dbRes.rows
+            var catIdsInGame = Object.keys(answers[0].player_ans)
+            Category.getCategoriesByCatId(catIdsInGame)
                 .then(dbRes => {
-                    // console.log(answerData);
                     var categoryNamesInGame = dbRes.rows
-                    res.render('marking-page', { answerData, categoryNamesInGame })
+                    res.render('marking-page', { answers, categoryNamesInGame })
                 })
         })
         .catch(err => {
             console.log(err)
         })
 })
-
-
 
 module.exports = router
