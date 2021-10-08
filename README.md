@@ -7,7 +7,7 @@ We wanted to create a game so that you can have fun~ all the while practicing ou
 
 Find our deployed project on Heroku: https://limitless-tundra-59541.herokuapp.com/.
 
-![game](/images/gamenight.jpg "Game Night")
+![game](/images/gamenight.png "Game Night")
 
 ### **Instructions**
 To play you will need someone to be the host - they will create a game by typing in a game name, host name and selecting the number of rounds. The game name will be shared amongst the players who will enter it before they are able to join the same game as the host.
@@ -56,7 +56,7 @@ The [diagram of our database schema](https://dbdiagram.io/d/615ecb43940c4c4eec89
 ## Future Improvements
 
 ## Team photo
-![team_photo](/images/teamphoto.jpg "Gang gang")
+![team_photo](/images/teamphoto.png "Gang gang")
 
 
 
