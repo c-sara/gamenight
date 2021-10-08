@@ -18,15 +18,26 @@ function get10RandCategories() {
   return db.query(sql)
 }
 
-
+function getCategoriesByCatId(arrayOfIDs) {
+  let sql = `SELECT * FROM categories WHERE cat_id IN (${arrayOfIDs.join(',')});`
+  return db.query(sql)
+}
 
 function convertCategoriesToArr(arrOfObjs) {
   return arrOfObjs.map(category => category.cat_id)
 }
 
+function getCategoriesByGameId(gameId) {
+  let sql = `SELECT categories FROM games WHERE game_id = $1;`
+  return db.query(sql, [gameId])
+}
+
+
 module.exports = {
   all,
   create,
   get10RandCategories,
-  convertCategoriesToArr
+  convertCategoriesToArr,
+  getCategoriesByCatId,
+  getCategoriesByGameId
 }

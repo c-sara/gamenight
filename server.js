@@ -15,6 +15,7 @@ const resultsRoutes = require('./routes/result_routes.js')
 const lobbyRoutes = require('./routes/lobby')
 const gameRoutes = require('./routes/game_routes')
 const playerRoutes = require('./routes/player_routes')
+const answerRoutes = require('./routes/player_routes')
 
 let session = require('express-session')
 
@@ -41,15 +42,13 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
+app.use('/',gameAndMarkingPageRoutes)
 app.use('/', lobbyRoutes)
 app.use('/', gameRoutes)
 app.use('/', playerRoutes)
-
-app.use(gameAndMarkingPageRoutes)
-
-app.use('/api', categoryRoutes)
-
+app.use('/', answerRoutes)
 app.use('/', resultsRoutes)
+app.use('/api', categoryRoutes)
 
 app.listen(port, () => {
     console.log('listening on port ' + port)
