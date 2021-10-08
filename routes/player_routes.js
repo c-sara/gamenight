@@ -17,12 +17,13 @@ router.get('/api/players', (req, res) => {
 
 
 //update to filter by game_id
-router.get('/api/marking-page', (req, res) => {
+router.get('/api/marking-page/:game_id', (req, res) => {
     //send the client all the player score info stored in players table
+    var gameId = req.params.game_id
 
-    var sql = 'SELECT players.player_id, score FROM players INNER JOIN answers ON players.player_id = answers.player_id;'
+    var sql = 'SELECT players.player_id, score FROM players INNER JOIN answers ON players.player_id = answers.player_id WHERE players.game_id = $1;'
 
-    db.query(sql)
+    db.query(sql, [gameId])
         .then(dbRes => {
             res.json(dbRes.rows)
         })

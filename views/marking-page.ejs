@@ -17,8 +17,9 @@
   </div>
   <div class="marking-page-player-answers-wrapper">
     <% answerData.forEach(player => { %>
+    
       <div class="marking-page-player-answer-wrapper">
-        <h4><%= player.display_name %></h4>
+        <h4 class="marking-page-gameId-data" data-gameId="<%= player.game_id %>"><%= player.display_name %></h4>
         <% var answerArray = Object.values(player.player_ans) %>
         <% answerArray.forEach(answer => { %>
           <div class="marking-page-individual-answer-div">
@@ -37,4 +38,5 @@
 
 
 
-<script src="js/marking-page.js"></script>
+
+<script src="/js/marking-page.js"></script>

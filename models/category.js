@@ -18,6 +18,8 @@ function get10RandCategories() {
   return db.query(sql)
 }
 
+
+
 function convertCategoriesToArr(arrOfObjs) {
   return arrOfObjs.map(category => category.cat_id)
 }
