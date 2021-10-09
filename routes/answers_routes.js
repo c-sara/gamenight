@@ -2,12 +2,13 @@ const express = require('express')
 
 var router = express.Router()
 
-const Category = require('../models/category.js')
-const Game = require('../models/game.js')
-const Player = require('../models/player.js')
-const Answer = require('../models/answers.js')
+const Game = require('../models/game')
+const Player = require('../models/player')
+const Category = require('../models/category')
+const Answer = require('../models/answers')
+const Results = require('../models/results')
+const MarkingPage = require('../models/marking-page')
 
-const db = require('../db/db')
 let session = require('express-session')
 
 router.get('/api/answers', (req, res) => {
@@ -16,16 +17,20 @@ router.get('/api/answers', (req, res) => {
             res.json({ answers: dbRes.rows })
         })
         .catch(err => {
+            console.log(err)
             res.json({ err })
         })
 })
 
 router.get('/api/answers/playerNames', (req, res) => {
-    Answer.allWithPlayerNames()
+    let gameId = req.session.game_id
+    Answer.singleGameAllWithPlayerNames(gameId)
         .then(dbRes => {
-            res.json({ answers: dbRes.rows })
+            res.json(dbRes.rows)
         })
         .catch(err => {
             res.json({ err })
         })
 })
+
+module.exports = router

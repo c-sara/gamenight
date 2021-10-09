@@ -9,13 +9,13 @@ const Game = require('./models/game.js')
 const Player = require('./models/player.js')
 const Results = require('./models/results.js')
 
-const gameAndMarkingPageRoutes = require('./routes/game_marking_page_routes.js')
+const markingPageRoutes = require('./routes/marking_page_routes.js')
 const categoryRoutes = require('./routes/category_routes.js')
 const resultsRoutes = require('./routes/result_routes.js')
-const lobbyRoutes = require('./routes/lobby')
+const lobbyRoutes = require('./routes/lobby_routes')
 const gameRoutes = require('./routes/game_routes')
 const playerRoutes = require('./routes/player_routes')
-const answerRoutes = require('./routes/player_routes')
+const answerRoutes = require('./routes/answers_routes')
 
 let session = require('express-session')
 
@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
-app.use('/',gameAndMarkingPageRoutes)
+app.use('/', markingPageRoutes)
 app.use('/', lobbyRoutes)
 app.use('/', gameRoutes)
 app.use('/', playerRoutes)
