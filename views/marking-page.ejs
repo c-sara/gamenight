@@ -1,47 +1,19 @@
 <% layout('layout') -%>
 
-<!--- change player id to player display name --->
-<!--- add the button event to triger colour change and table update --->
 <div class="gap"></div>
 <div class="gap"></div>
 
 <div class="marking-page-main">
-  <%# categoryNamesInGame %>
   
-  <table>
-    <% categoryNamesInGame.forEach(category => { %>
-      <th style="width: 10%"><%= category.category %></th>
-    <% }) %>
+  <table data-gameid="<%= gameId %>" class="marking-page-answers-table" style="white-space: nowrap;">
+    <tr>
+      <th>Player Names</th>
+      <% categoryNamesInGame.forEach(category => { %>
+        <th><%= category.category %></th>
+      <% }) %>
+      <th>Scores</th>
+    </tr>
   </table>
-  <!-- <div class="marking-page-categories-wrapper">
-    <h4>
-      Categories
-    </h4>
-    <%# categoryNamesInGame.forEach(category => { %>
-      
-        <p>
-          <label class="marking-page-category-label"><%# category.category %></label>
-        </p>
-    <%# }) %>
-  </div> -->
-
-  <%= console.log(answers) %>
-    <% answers.forEach(player => { %>
-    
-      <div class="marking-page-player-answer-wrapper">
-        <h4 class="marking-page-gameId-data" data-gameId="<%= player.game_id %>"><%= player.display_name %></h4>
-        <% var answerArray = Object.values(player.player_ans) %>
-        <% answerArray.forEach(answer => { %>
-          <div class="marking-page-individual-answer-div">
-            <button data-userId="<%= player.player_id %>" class="marking-page-answer-btn"><%= answer||"😰"%></button>
-          </div>
-        <% }) %>
-        <div class="marking-page-player-score-div">
-          Score: <span class="score<%= player.player_id %>">0</span>
-        </div>
-      </div>
-    <% }) %>
-</div>
 
 <a href="/results" class='dark-btn'>Results</a>
 

@@ -1,11 +1,10 @@
-let answerDivs = document.querySelectorAll('.marking-page-individual-answer-div')
-let dataSetGameId = document.querySelector('.marking-page-gameId-data')
-// console.log(dataSetGameId);
-// console.log(dataSetGameId.textContent)
-let dSetGameId = dataSetGameId.dataset.gameid
-console.log(dSetGameId)
+let gameId = document.querySelector('[data-gameid]').dataset.gameid
 
-function handleAddPoint(e) {
+let answersTable = document.querySelector('.marking-page-answers-table')
+
+answersTable.addEventListener('click', handleIncrementPoint)
+
+function handleIncrementPoint(e) {
     let clicked = e.target
     let btnOwner = clicked.dataset.userid
 
@@ -19,9 +18,8 @@ function handleAddPoint(e) {
     }
 }
 
-
 function renderPlayersScores() {
-       axios.get(`/api/marking-page/${dSetGameId}`)
+       axios.get(`/api/marking-page/${gameId}`)
         .then(scores => {
             var scoreArray = scores.data
             scoreArray.forEach(playerScore => {
@@ -33,16 +31,32 @@ function renderPlayersScores() {
 
 setInterval(renderPlayersScores, 1000)
 
-answerDivs.forEach(answerDiv => {
-    answerDiv.addEventListener('click', handleAddPoint)
-    answerDiv.style.display = 'flex'
-    answerDiv.style.flexDirection = 'column'
-    answerDiv.style.textAlign = 'center'
-})
+function createRow(displayName, answers, playerId) {
+    let tr = document.createElement('tr')
+    let name = document.createElement('td')
 
-let wrapper = document.querySelector('.marking-page-main')
+    name.textContent = displayName
 
-wrapper.style.display = 'grid'
-wrapper.style.width = '100%'
-let allColumnsButFirst = '1fr '.repeat(answerDivs.length)
-wrapper.style.gridTemplateColumns = `25% ${allColumnsButFirst}`
+    tr.appendChild(name)
+
+    Object.keys(answers).forEach(answer => {
+        let td = document.createElement('td')
+        td.innerHTML = `<button data-userId="${playerId}" class="marking-page-answer-btn">${answers[answer] || "😰"}</button>`
+        tr.appendChild(td)
+    })
+
+    let score = document.createElement('td')
+    score.innerHTML = `Score: <span class="score${playerId}">0</span>`
+
+    tr.appendChild(score)
+
+    answersTable.appendChild(tr)
+}
+
+axios.get('/api/answers/playerNames')
+    .then(answers => {
+        console.log(answers.data)
+        answers.data.forEach(player => {
+            createRow(player.display_name, player.player_ans, player.player_id)
+        })
+    })

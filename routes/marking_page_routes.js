@@ -12,6 +12,7 @@ const MarkingPage = require('../models/marking-page')
 const db = require('../db/db')
 let session = require('express-session')
 
+// saves answers and renders marking page
 router.post('/marking-page/:game_id', (req, res) => {
 
     var gameId = req.params.game_id
@@ -27,7 +28,7 @@ router.post('/marking-page/:game_id', (req, res) => {
             Category.getCategoriesByCatId(catIdsInGame)
                 .then(dbRes => {
                     var categoryNamesInGame = dbRes.rows
-                    res.render('marking-page', { answers, categoryNamesInGame })
+                    res.render('marking-page', { answers, categoryNamesInGame, gameId })
                 })
         })
         .catch(err => {
@@ -36,9 +37,9 @@ router.post('/marking-page/:game_id', (req, res) => {
         })
 })
 
-//update to filter by game_id
+
+//send the client all the player score info stored in players table
 router.get('/api/marking-page/:game_id', (req, res) => {
-    //send the client all the player score info stored in players table
     var gameId = req.params.game_id
 
     MarkingPage.getScores(gameId)
@@ -49,6 +50,7 @@ router.get('/api/marking-page/:game_id', (req, res) => {
             console.log(err)
             res.json({ err: err.message })
         })
+        
 })
 
 router.put('/api/marking-page', (req, res) => {
